@@ -5,6 +5,7 @@ module com.easymed {
     requires java.mail;
     requires java.sql;
     requires mysql.connector.j;
+    requires org.controlsfx.controls;
 
     opens com.easymed.controllers to javafx.fxml;
     exports com.easymed.controllers;
