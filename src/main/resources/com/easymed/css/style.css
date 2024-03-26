@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Baloo Da 2 Bold';
+    src: url('com/easymed/fonts/BalooDa2-Bold.ttf');
+}
+
+.email {
+    -fx-background-color: #fff;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 0px;
+    -fx-border-color: #bababa;
+}
+
+.email:focused {
+    -fx-border-width: 1px;
+    -fx-border-color: #48bc9f;
+}
+
+.btn1 {
+    -fx-padding: 10px 30px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-background-color: #465071;
+    -fx-font-size: 15px;
+    -fx-font-weight: bolder;
+}
+
+.btn1:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+    -fx-cursor: hand;
+}
+
+.textLogo {
+
+}
