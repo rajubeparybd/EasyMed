@@ -1,15 +1,13 @@
 package com.easymed.controllers.auth;
 
 import com.easymed.database.services.AuthService;
-import com.easymed.utils.DatabaseReadCall;
-import com.easymed.utils.Notification;
-import com.easymed.utils.Transitions;
-import com.easymed.utils.Validations;
+import com.easymed.utils.*;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -171,7 +169,7 @@ public class LoginController implements Initializable {
     }
 
     public void signUp(ActionEvent actionEvent) {
-        //TODO: Implement sign up scene
+        FXMLScene.switchScene("/com/easymed/views/auth/registration.fxml", (Node) actionEvent.getSource());
     }
 
     public void login(ActionEvent actionEvent) {
