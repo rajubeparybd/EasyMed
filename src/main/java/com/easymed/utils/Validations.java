@@ -1,5 +1,8 @@
 package com.easymed.utils;
 
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+
 /**
  * Validations class is used to validate different types of data.
  *
@@ -28,5 +31,26 @@ public class Validations {
      */
     public static boolean isPasswordValid(String password) {
         return (password.length() >= 6);
+    }
+
+    /**
+     * invalidInput method is used to show invalid input feedback.
+     *
+     * @param success  ImageView
+     * @param wrong    ImageView
+     * @param feedback Label
+     * @param message  String
+     */
+    public static void inputIsInvalid(ImageView success, ImageView wrong, Label feedback, String message) {
+        success.setVisible(false);
+        wrong.setVisible(true);
+        feedback.setText(message);
+        feedback.setVisible(true);
+    }
+
+    public static void inputIsValid(ImageView wrong, ImageView success, Label feedback) {
+        wrong.setVisible(false);
+        success.setVisible(true);
+        feedback.setVisible(false);
     }
 }

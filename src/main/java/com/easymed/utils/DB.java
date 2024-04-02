@@ -28,12 +28,6 @@ public class DB {
             throw new RuntimeException("Error connecting to the database", e);
         }
 
-        if (connection != null) {
-            System.out.println("Connected to the database");
-        } else {
-            System.out.println("Failed to connect to the database");
-        }
-
         return this.connection;
     }
 }

@@ -2,6 +2,7 @@ package com.easymed.controllers.auth;
 
 import com.easymed.database.services.AuthService;
 import com.easymed.utils.DatabaseReadCall;
+import com.easymed.utils.Notification;
 import com.easymed.utils.Transitions;
 import com.easymed.utils.Validations;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
@@ -19,7 +20,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
-import org.controlsfx.control.Notifications;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -113,7 +113,9 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(this::changeSVG);
+        Platform.runLater(() -> {
+            Transitions.changeSVG(rootPane, svg, doctorImg);
+        });
 
         emailIValidationFeedback.setVisible(false);
         passwordValidationFeedback.setVisible(false);
@@ -133,21 +135,9 @@ public class LoginController implements Initializable {
         Platform.runLater(() -> {
             Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.maximizedProperty().addListener((ov, t, t1) -> {
-                if (t) changeSVG();
+                if (t) Transitions.changeSVG(rootPane, svg, doctorImg);
             });
         });
-    }
-
-    private void changeSVG() {
-        double height = rootPane.getScene().getHeight();
-        double width = rootPane.getScene().getWidth();
-        double lx = 344;
-        double cx = 344;
-        double rx = 571.04;
-        double ty = width / 2;
-        String path = "M 0 " + Math.round(lx) + " C 0 " + Math.round(cx) + " 435 " + Math.round(rx) + " " + Math.round(ty) + " 0 L " + Math.round(ty) + " " + Math.round(height) + " L 0 " + Math.round(height) + " Z M 0 344.1211";
-        svg.setContent(path);
-        doctorImg.setLayoutX(ty - 247);
     }
 
     /**
@@ -157,14 +147,11 @@ public class LoginController implements Initializable {
      */
     public void emailType(KeyEvent keyEvent) {
         if (email.getText().isEmpty()) {
-            emailIsRequired();
+            Validations.inputIsInvalid(img1Success, img1Wrong, emailIValidationFeedback, "Email Address is required");
         } else if (!Validations.isEmailValid(email.getText())) {
-            img1Success.setVisible(false);
-            img1Wrong.setVisible(true);
-            emailIValidationFeedback.setText("Invalid Email Address");
-            emailIValidationFeedback.setVisible(true);
+            Validations.inputIsInvalid(img1Success, img1Wrong, emailIValidationFeedback, "Invalid Email Address");
         } else {
-            emailIsValid();
+            Validations.inputIsValid(img1Wrong, img1Success, emailIValidationFeedback);
         }
     }
 
@@ -175,41 +162,12 @@ public class LoginController implements Initializable {
      */
     public void passwordType(KeyEvent keyEvent) {
         if (password.getText().isEmpty()) {
-            passwordIsRequired();
+            Validations.inputIsInvalid(img2Success, img2Wrong, passwordValidationFeedback, "Password is required");
         } else if (!Validations.isPasswordValid(password.getText())) {
-            img2Success.setVisible(false);
-            img2Wrong.setVisible(true);
-            passwordValidationFeedback.setText("Minimum 6 characters required.");
-            passwordValidationFeedback.setVisible(true);
+            Validations.inputIsInvalid(img2Success, img2Wrong, passwordValidationFeedback, "Password must be at least 6 characters long");
         } else {
-            passwordIsValid();
+            Validations.inputIsValid(img2Wrong, img2Success, passwordValidationFeedback);
         }
-    }
-
-    private void emailIsRequired() {
-        img1Success.setVisible(false);
-        img1Wrong.setVisible(true);
-        emailIValidationFeedback.setText("Email Address is required");
-        emailIValidationFeedback.setVisible(true);
-    }
-
-    private void passwordIsRequired() {
-        img2Success.setVisible(false);
-        img2Wrong.setVisible(true);
-        passwordValidationFeedback.setText("Password is required");
-        passwordValidationFeedback.setVisible(true);
-    }
-
-    private void emailIsValid() {
-        img1Wrong.setVisible(false);
-        img1Success.setVisible(true);
-        emailIValidationFeedback.setVisible(false);
-    }
-
-    private void passwordIsValid() {
-        img2Wrong.setVisible(false);
-        img2Success.setVisible(true);
-        passwordValidationFeedback.setVisible(false);
     }
 
     public void signUp(ActionEvent actionEvent) {
@@ -219,8 +177,12 @@ public class LoginController implements Initializable {
     public void login(ActionEvent actionEvent) {
         String email = this.email.getText();
         String password = this.password.getText();
-        if (email.isEmpty()) emailIsRequired();
-        if (password.isEmpty()) passwordIsRequired();
+        if (email.isEmpty())
+            Validations.inputIsInvalid(img1Success, img1Wrong, emailIValidationFeedback, "Email Address is required");
+
+        if (password.isEmpty())
+            Validations.inputIsInvalid(img2Success, img2Wrong, passwordValidationFeedback, "Password is required");
+
         if (!Validations.isEmailValid(email)) this.emailIValidationFeedback.setVisible(true);
         if (!Validations.isPasswordValid(password)) this.passwordValidationFeedback.setVisible(true);
 
@@ -233,28 +195,21 @@ public class LoginController implements Initializable {
             databaseReadCall.setOnSucceeded(event -> {
                 try {
                     if (databaseReadCall.getValue().next()) {
-                        Notifications.create()
-                                .title("Success")
-                                .text("Login Successful")
-                                .showInformation();
+                        Notification.success("Success", "Login successful");
                         //TODO: Implement dashboard scene according to the user role
                     } else {
                         loginFailedWarning.setVisible(true);
-                        Notifications.create()
-                                .text("Login Failed. Please try again.")
-                                .showWarning();
+                        Notification.error("Error", "Invalid email or password");
                     }
                 } catch (SQLException e) {
                     System.out.println("LoginController.login: " + e.getMessage());
+                    Notification.error("Error", "Something went wrong. Please try again.");
                 }
                 loginButton.setDisable(false);
                 spinner.setVisible(false);
             });
             databaseReadCall.setOnFailed(event -> {
-                Notifications.create()
-                        .title("Error")
-                        .text("Something went wrong. Please try again.")
-                        .showError();
+                Notification.error("Error", "Something went wrong. Please try again.");
             });
             new Thread(databaseReadCall).start();
         }
