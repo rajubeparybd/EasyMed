@@ -3,6 +3,7 @@ package com.easymed.controllers.auth;
 import com.easymed.database.services.AuthService;
 import com.easymed.utils.*;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -82,6 +83,10 @@ public class ForgetPasswordController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(() -> {
+            Stage stage = (Stage) contentArea.getScene().getWindow();
+            stage.setTitle(Helpers.getTitle("Forget Password"));
+        });
         emailValidationFeedback.setVisible(false);
         forgetPasswordFailedWarning.setVisible(false);
         imgSuccess.setVisible(false);

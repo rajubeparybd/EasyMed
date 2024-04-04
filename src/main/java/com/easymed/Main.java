@@ -1,5 +1,6 @@
 package com.easymed;
 
+import com.easymed.utils.Helpers;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,7 +21,7 @@ public class Main extends Application {
         stage.getIcons().add(icon);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/auth/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Login");
+        stage.setTitle(Helpers.getTitle("Application"));
         stage.setScene(scene);
         stage.show();
     }

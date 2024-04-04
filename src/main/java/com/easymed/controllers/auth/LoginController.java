@@ -132,6 +132,7 @@ public class LoginController implements Initializable {
 
         Platform.runLater(() -> {
             Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setTitle(Helpers.getTitle("Login"));
             stage.maximizedProperty().addListener((ov, t, t1) -> {
                 if (t) Transitions.changeSVG(rootPane, svg, doctorImg);
             });
