@@ -214,7 +214,7 @@ public class LoginController implements Initializable {
     }
 
     public void forgetPassword(ActionEvent actionEvent) {
-        //TODO: Implement forget password scene
+        FXMLScene.switchScene("/com/easymed/views/auth/forget-password.fxml", (Node) actionEvent.getSource());
     }
 
 

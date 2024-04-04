@@ -14,6 +14,11 @@ import java.util.HashMap;
  */
 public class AuthService {
 
+    /*
+     * The code sent to the user's email to reset the password
+     */
+    public static String forgotPasswordCode = null;
+
     /**
      * Attempt to log in a user with the given email and password
      *
@@ -62,4 +67,77 @@ public class AuthService {
 
         return new DatabaseReadCall(query, placeholders);
     }
+
+    /**
+     * Send a code to the user's email to reset the password
+     *
+     * @param email User's email
+     *
+     * @return DatabaseWriteCall
+     */
+    public static DatabaseWriteCall sendForgetPasswordCode(String email) {
+        String query = "INSERT INTO forget_password (email, code) VALUES (?, ?)";
+        forgotPasswordCode = String.valueOf((int) (Math.random() * 900000) + 100000);
+
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, email);
+        placeholders.put(2, forgotPasswordCode);
+
+        return new DatabaseWriteCall(query, placeholders);
+    }
+
+
+    /**
+     * Check if the code sent to the user's email matches the code in the database
+     *
+     * @param email User's email
+     * @param code  Code sent to the user's email
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall checkForgetPasswordCode(String email, String code) {
+        String query = "SELECT * FROM forget_password WHERE email = ? AND code = ?";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, email);
+        placeholders.put(2, code);
+
+        return new DatabaseReadCall(query, placeholders);
+    }
+
+
+    /**
+     * Delete the code sent to the user's email
+     *
+     * @param email User's email
+     *
+     * @return DatabaseWriteCall
+     */
+    public static DatabaseWriteCall deleteForgetPasswordCode(String email) {
+        String query = "DELETE FROM forget_password WHERE email = ?";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, email);
+
+        return new DatabaseWriteCall(query, placeholders);
+    }
+
+
+    /**
+     * Change the user's password
+     *
+     * @param email    User's email
+     * @param password User's new password
+     *
+     * @return DatabaseWriteCall
+     */
+    public static DatabaseWriteCall changePassword(String email, String password) {
+        String query = "UPDATE users SET password = ? WHERE email = ?";
+        String hashedPassword = Hash.make(password);
+
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, hashedPassword);
+        placeholders.put(2, email);
+
+        return new DatabaseWriteCall(query, placeholders);
+    }
+
 }
