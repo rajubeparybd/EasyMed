@@ -1,9 +1,13 @@
 package com.easymed;
 
+import com.easymed.database.services.AuthService;
+import com.easymed.utils.DatabaseWriteCall;
 import com.easymed.utils.Helpers;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -23,6 +27,20 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle(Helpers.getTitle("Application"));
         stage.setScene(scene);
+        stage.setOnCloseRequest(event -> {
+            event.consume();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Are you sure you want to exit?");
+            alert.setContentText("Any unsaved changes will be lost.");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    DatabaseWriteCall deleteCode = AuthService.deleteForgetPasswordAllCode();
+                    deleteCode.getInsertedRows();
+                    stage.close();
+                }
+            });
+        });
         stage.show();
     }
 }

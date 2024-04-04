@@ -140,4 +140,8 @@ public class AuthService {
         return new DatabaseWriteCall(query, placeholders);
     }
 
+    public static DatabaseWriteCall deleteForgetPasswordAllCode() {
+        String query = "DELETE FROM forget_password";
+        return new DatabaseWriteCall(query, new HashMap<>());
+    }
 }
