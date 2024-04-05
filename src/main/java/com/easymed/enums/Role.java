@@ -33,8 +33,8 @@ public enum Role {
      *
      * @return Boolean
      */
-    public boolean isAdmin() {
-        return this == ADMIN;
+    public static boolean isAdmin(String role) {
+        return role.toUpperCase().equals(ADMIN.toString());
     }
 
     /**
@@ -42,8 +42,8 @@ public enum Role {
      *
      * @return Boolean
      */
-    public boolean isDoctor() {
-        return this == DOCTOR;
+    public static boolean isDoctor(String role) {
+        return role.toUpperCase().equals(DOCTOR.toString());
     }
 
     /**
@@ -51,7 +51,7 @@ public enum Role {
      *
      * @return Boolean
      */
-    public boolean isPatient() {
-        return this == PATIENT;
+    public static boolean isPatient(String role) {
+        return role.toUpperCase().equals(PATIENT.toString());
     }
 }
