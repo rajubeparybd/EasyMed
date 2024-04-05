@@ -1,5 +1,7 @@
 package com.easymed.enums;
 
+import java.util.Locale;
+
 /**
  * User roles enumeration
  *
@@ -33,8 +35,8 @@ public enum Role {
      *
      * @return Boolean
      */
-    public boolean isAdmin() {
-        return this == ADMIN;
+    public boolean isAdmin(String role) {
+        return role.toUpperCase().equals(ADMIN.toString());
     }
 
     /**
@@ -42,8 +44,8 @@ public enum Role {
      *
      * @return Boolean
      */
-    public boolean isDoctor() {
-        return this == DOCTOR;
+    public boolean isDoctor(String role) {
+        return role.toUpperCase().equals(DOCTOR.toString());
     }
 
     /**
@@ -51,7 +53,7 @@ public enum Role {
      *
      * @return Boolean
      */
-    public boolean isPatient() {
-        return this == PATIENT;
+    public boolean isPatient(String role) {
+        return role.toUpperCase().equals(PATIENT.toString());
     }
 }
