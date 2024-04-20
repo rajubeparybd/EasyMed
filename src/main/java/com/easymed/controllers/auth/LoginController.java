@@ -211,8 +211,7 @@ public class LoginController implements Initializable {
                         if (Role.isPatient(user.getString("role"))) {
                             FXMLScene.switchScene("/com/easymed/views/patient/dashboard.fxml", (Node) actionEvent.getSource(), userData);
                         } else if (Role.isDoctor(user.getString("role"))) {
-                            //TODO: Implement doctor dashboard scene
-                            System.out.println("Doctor dashboard");
+                            FXMLScene.switchScene("/com/easymed/views/doctor/dashboard.fxml", (Node) actionEvent.getSource(), userData);
                         } else if (Role.isAdmin(user.getString("role"))) {
                             //TODO: Implement admin dashboard scene
                             System.out.println("Admin dashboard");

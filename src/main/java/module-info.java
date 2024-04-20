@@ -15,6 +15,8 @@ module com.easymed {
     exports com.easymed.controllers.auth;
     opens com.easymed.controllers.patient to javafx.fxml;
     exports com.easymed.controllers.patient;
+    opens com.easymed.controllers.doctor to javafx.fxml;
+    exports com.easymed.controllers.doctor;
     opens com.easymed to javafx.fxml;
     exports com.easymed;
 }

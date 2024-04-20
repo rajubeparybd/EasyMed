@@ -64,3 +64,25 @@
     -fx-border-style: solid;
     -fx-border-radius: 10px;
 }
+
+.appointment-card {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.appointment-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+.appointment-view:hover {
+    -fx-cursor: hand;
+}
+
+.appointment-status {
+    -fx-background-color: #4dd1ce;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 5px;
+}
