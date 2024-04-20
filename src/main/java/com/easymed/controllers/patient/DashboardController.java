@@ -95,7 +95,7 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setTitle(Helpers.getTitle("Dashboard"));
+            stage.setTitle(user.getName() + " " + Helpers.getTitle("Dashboard"));
             greetings.setText((new GreetingMaker()).printTimeOfDay());
             name.setText(this.user.getName());
             String dateString = Helpers.getDate();
