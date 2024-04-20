@@ -1,6 +1,7 @@
 package com.easymed.controllers.auth;
 
 import com.easymed.database.services.AuthService;
+import com.easymed.enums.Role;
 import com.easymed.utils.*;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.application.Platform;
@@ -20,7 +21,9 @@ import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
@@ -195,7 +198,26 @@ public class LoginController implements Initializable {
                 try {
                     if (databaseReadCall.getValue().next()) {
                         Notification.success("Success", "Login successful");
-                        //TODO: Implement dashboard scene according to the user role
+
+                        // User data to be passed to the dashboard scene
+                        HashMap<String, String> userData = new HashMap<>();
+                        ResultSet user = databaseReadCall.getValue();
+                        userData.put("id", user.getString("id"));
+                        userData.put("name", user.getString("name"));
+                        userData.put("email", user.getString("email"));
+                        userData.put("role", user.getString("role"));
+
+                        // Switch to the dashboard scene based on the user role
+                        if (Role.isPatient(user.getString("role"))) {
+                            FXMLScene.switchScene("/com/easymed/views/patient/dashboard.fxml", (Node) actionEvent.getSource(), userData);
+                        } else if (Role.isDoctor(user.getString("role"))) {
+                            //TODO: Implement doctor dashboard scene
+                            System.out.println("Doctor dashboard");
+                        } else if (Role.isAdmin(user.getString("role"))) {
+                            //TODO: Implement admin dashboard scene
+                            System.out.println("Admin dashboard");
+                        }
+
                     } else {
                         loginFailedWarning.setVisible(true);
                         Notification.error("Error", "Invalid email or password");
@@ -217,6 +239,4 @@ public class LoginController implements Initializable {
     public void forgetPassword(ActionEvent actionEvent) {
         FXMLScene.switchScene("/com/easymed/views/auth/forget-password.fxml", (Node) actionEvent.getSource());
     }
-
-
 }

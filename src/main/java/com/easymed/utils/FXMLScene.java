@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.HashMap;
+
 /**
  * FXMLScene class is used to load and switch between different FXML scenes and transfer data between them.
  *
@@ -59,6 +61,26 @@ public class FXMLScene {
      * @param node      Node object
      */
     public static void switchScene(FXMLScene fxmlScene, Node node) {
+        Scene scene = new Scene(fxmlScene.getRoot());
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * switchScene method is used to switch between different FXML scenes and transfer data between them.
+     *
+     * @param fxmlPath FXML file path
+     * @param node     Node object
+     * @param data     Data to be transferred
+     */
+    public static void switchScene(String fxmlPath, Node node, HashMap<String, String> data) {
+        FXMLScene fxmlScene = FXMLScene.load(fxmlPath);
+        try {
+            fxmlScene.getController().getClass().getMethod("setData", HashMap.class).invoke(fxmlScene.getController(), data);
+        } catch (Exception e) {
+            System.out.println("Error setting data to controller: " + e.getMessage());
+        }
         Scene scene = new Scene(fxmlScene.getRoot());
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(scene);
