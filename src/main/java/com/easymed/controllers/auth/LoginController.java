@@ -213,8 +213,7 @@ public class LoginController implements Initializable {
                         } else if (Role.isDoctor(user.getString("role"))) {
                             FXMLScene.switchScene("/com/easymed/views/doctor/dashboard.fxml", (Node) actionEvent.getSource(), userData);
                         } else if (Role.isAdmin(user.getString("role"))) {
-                            //TODO: Implement admin dashboard scene
-                            System.out.println("Admin dashboard");
+                            FXMLScene.switchScene("/com/easymed/views/admin/dashboard.fxml", (Node) actionEvent.getSource(), userData);
                         }
 
                     } else {
