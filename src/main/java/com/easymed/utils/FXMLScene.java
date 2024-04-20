@@ -50,6 +50,7 @@ public class FXMLScene {
         Scene scene = new Scene(fxmlScene.getRoot());
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
 
     }
@@ -64,6 +65,7 @@ public class FXMLScene {
         Scene scene = new Scene(fxmlScene.getRoot());
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -84,6 +86,7 @@ public class FXMLScene {
         Scene scene = new Scene(fxmlScene.getRoot());
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
 
