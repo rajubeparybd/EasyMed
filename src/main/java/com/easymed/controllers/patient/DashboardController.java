@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -93,6 +94,8 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setTitle(Helpers.getTitle("Dashboard"));
             greetings.setText((new GreetingMaker()).printTimeOfDay());
             name.setText(this.user.getName());
             String dateString = Helpers.getDate();
