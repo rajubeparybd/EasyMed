@@ -25,6 +25,14 @@
     -fx-font-weight: bolder;
 }
 
+.btn2 {
+    -fx-padding: 10px 30px;
+    -fx-text-fill: white;
+    -fx-background-color: #4dd1ce;
+    -fx-font-size: 15px;
+    -fx-font-weight: bolder;
+}
+
 .sidebarBtn-active {
     -fx-text-fill: white;
     -fx-background-color: #4dd1ce;
@@ -41,7 +49,7 @@
     -fx-cursor: hand;
 }
 
-.btn1:hover, .sidebarBtn-active:hover {
+.btn1:hover, .btn2:hover, .sidebarBtn-active:hover {
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
     -fx-cursor: hand;
 }
