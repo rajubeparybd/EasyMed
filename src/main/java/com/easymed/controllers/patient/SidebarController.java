@@ -80,8 +80,7 @@ public class SidebarController implements Initializable {
     @FXML
     public void profile(ActionEvent actionEvent) {
         Helpers.toggleMenuClass(actionEvent);
-        //TODO: Implement profile view
-        System.out.println("Profile");
+        FXMLScene.switchScene("/com/easymed/views/patient/profile.fxml", (Node) actionEvent.getSource());
     }
 
     /**
