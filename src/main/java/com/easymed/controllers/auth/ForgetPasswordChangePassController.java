@@ -2,11 +2,13 @@ package com.easymed.controllers.auth;
 
 import com.easymed.database.services.AuthService;
 import com.easymed.utils.DatabaseWriteCall;
+import com.easymed.utils.FXMLScene;
 import com.easymed.utils.Helpers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -60,7 +62,7 @@ public class ForgetPasswordChangePassController implements Initializable {
                 alert.setTitle("Changed Password");
                 alert.setHeaderText("Your Password has been changed successfully");
                 alert.show();
-                stage.close();
+                FXMLScene.switchScene("/com/easymed/views/auth/login.fxml", (Node) actionEvent.getSource());
             });
             new Thread(changePassword).start();
         } else {

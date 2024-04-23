@@ -265,9 +265,7 @@ public class RegistrationController implements Initializable {
             databaseWriteCall.setOnSucceeded(event -> {
                 if (databaseWriteCall.isDone()) {
                     Notification.success("Success", "Account Registration successful");
-
-                    //TODO: Implement dashboard scene according to the user role
-
+                    FXMLScene.switchScene("/com/easymed/views/patient/dashboard.fxml", (Node) actionEvent.getSource());
                 } else {
                     registrationFailedWarning.setVisible(true);
                     Notification.error("Registration Failed Please try again.");
