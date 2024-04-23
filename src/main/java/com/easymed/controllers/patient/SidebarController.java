@@ -43,8 +43,7 @@ public class SidebarController implements Initializable {
     @FXML
     public void records(ActionEvent actionEvent) {
         Helpers.toggleMenuClass(actionEvent);
-        //TODO: Implement records view
-        System.out.println("Records");
+        FXMLScene.switchScene("/com/easymed/views/patient/records.fxml", (Node) actionEvent.getSource());
     }
 
     /**
