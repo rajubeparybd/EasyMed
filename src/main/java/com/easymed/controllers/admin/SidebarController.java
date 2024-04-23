@@ -46,19 +46,6 @@ public class SidebarController implements Initializable {
         FXMLScene.switchScene("/com/easymed/views/admin/patients-list.fxml", (Node) actionEvent.getSource());
     }
 
-
-    /**
-     * Switches the scene to the appointments view when the appointments button is clicked
-     *
-     * @param actionEvent appointments button click event
-     */
-    @FXML
-    public void appointments(ActionEvent actionEvent) {
-        Helpers.toggleMenuClass(actionEvent);
-        //TODO: Implement appointments view
-        System.out.println("Appointments");
-    }
-
     /**
      * Switches the scene to the chat box view when the chat box button is clicked
      *
@@ -90,9 +77,7 @@ public class SidebarController implements Initializable {
      */
     @FXML
     public void profile(ActionEvent actionEvent) {
-        Helpers.toggleMenuClass(actionEvent);
-        //TODO: Implement profile view
-        System.out.println("Profile");
+        FXMLScene.switchScene("/com/easymed/views/admin/profile.fxml", (Node) actionEvent.getSource());
     }
 
     /**
