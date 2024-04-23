@@ -61,6 +61,9 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
+            VBox sidebar = (VBox) rootPane.getLeft();
+            Helpers.toggleMenuClass(sidebar, "dashboard");
+
             Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.setTitle(user.getName() + " " + Helpers.getTitle("Dashboard"));
             greetings.setText((new GreetingMaker()).printTimeOfDay());

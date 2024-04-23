@@ -88,4 +88,22 @@ public class Helpers {
         btn.getStyleClass().remove("sidebarBtn");
         btn.getStyleClass().add("sidebarBtn-active");
     }
+
+    /**
+     * Toggles the active class on the sidebar buttons
+     *
+     * @param sidebar sidebar container
+     * @param id      id of the button that was clicked
+     */
+    public static void toggleMenuClass(VBox sidebar, String id) {
+        sidebar.getChildren().forEach(node -> {
+            if (node.getId().equals(id) && !node.getStyleClass().contains("sidebarBtn-active")) {
+                node.getStyleClass().add("sidebarBtn-active");
+                node.getStyleClass().remove("sidebarBtn");
+            } else {
+                node.getStyleClass().remove("sidebarBtn-active");
+                node.getStyleClass().add("sidebarBtn");
+            }
+        });
+    }
 }

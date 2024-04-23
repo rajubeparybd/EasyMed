@@ -10,14 +10,14 @@
       fx:id="sidebar" alignment="TOP_CENTER" prefHeight="731.0" prefWidth="233.0"
       style="-fx-background-color: #089bab; -fx-background-radius: 0 20 20 0;"
       fx:controller="com.easymed.controllers.admin.SidebarController">
-    <ImageView fitHeight="51.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fx:id="logo" fitHeight="51.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
         <VBox.margin>
             <Insets top="14.0"/>
         </VBox.margin>
         <Image url="@../../images/logo.png"/>
     </ImageView>
-    <JFXButton graphicTextGap="25.0" onAction="#dashboard" prefHeight="54.0" prefWidth="234.0"
-               styleClass="sidebarBtn-active" text="Dashboard">
+    <JFXButton fx:id="dashboard" graphicTextGap="25.0" onAction="#dashboard" prefHeight="54.0" prefWidth="234.0"
+               styleClass="sidebarBtn" text="Dashboard">
         <graphic>
             <ImageView fitHeight="39.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../../images/dashboard_layout_96px.png"/>
@@ -33,7 +33,7 @@
             <Insets bottom="10.0" right="15.0" top="10.0"/>
         </padding>
     </JFXButton>
-    <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="91.0" onAction="#profile" prefHeight="54.0"
+    <JFXButton fx:id="profile" graphicTextGap="25.0" layoutX="10.0" layoutY="91.0" onAction="#profile" prefHeight="54.0"
                prefWidth="234.0" text="Profile" styleClass="sidebarBtn">
         <font>
             <Font size="20.0"/>
@@ -50,7 +50,8 @@
             </ImageView>
         </graphic>
     </JFXButton>
-    <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="155.0" onAction="#doctors" prefHeight="54.0"
+    <JFXButton fx:id="doctors" graphicTextGap="25.0" layoutX="10.0" layoutY="155.0" onAction="#doctors"
+               prefHeight="54.0"
                prefWidth="234.0" text="Doctors" styleClass="sidebarBtn">
         <font>
             <Font size="20.0"/>
@@ -64,7 +65,8 @@
             </ImageView>
         </graphic>
     </JFXButton>
-    <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="214.0" onAction="#patients" prefHeight="54.0"
+    <JFXButton fx:id="patients" graphicTextGap="25.0" layoutX="10.0" layoutY="214.0" onAction="#patients"
+               prefHeight="54.0"
                prefWidth="234.0" text="Patients">
         <graphic>
             <ImageView fitHeight="37.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
@@ -78,7 +80,8 @@
             <Insets bottom="10.0" right="39.0" top="10.0"/>
         </padding>
     </JFXButton>
-    <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="160.0" onAction="#chatBox" prefHeight="54.0"
+    <JFXButton fx:id="chatBox" graphicTextGap="25.0" layoutX="10.0" layoutY="160.0" onAction="#chatBox"
+               prefHeight="54.0"
                prefWidth="234.0" text="ChatBox" styleClass="sidebarBtn">
         <graphic>
             <ImageView fitHeight="39.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
@@ -92,7 +95,7 @@
             <Insets bottom="10.0" right="36.0" top="10.0"/>
         </padding>
     </JFXButton>
-    <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="273.0" onAction="#logout" prefHeight="54.0"
+    <JFXButton fx:id="logout" graphicTextGap="25.0" layoutX="10.0" layoutY="273.0" onAction="#logout" prefHeight="54.0"
                prefWidth="234.0" text="Logout" styleClass="sidebarBtn">
         <graphic>
             <ImageView fitHeight="39.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
