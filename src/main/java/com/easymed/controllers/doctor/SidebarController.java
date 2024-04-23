@@ -81,8 +81,7 @@ public class SidebarController implements Initializable {
     @FXML
     public void doctors(ActionEvent actionEvent) {
         Helpers.toggleMenuClass(actionEvent);
-        //TODO: Implement doctors list view
-        System.out.println("Doctors");
+        FXMLScene.switchScene("/com/easymed/views/doctor/doctors-list.fxml", (Node) actionEvent.getSource());
     }
 
     /**
