@@ -12,11 +12,14 @@ public enum Role {
      */
     ADMIN, DOCTOR, PATIENT;
 
+    public static String getText(Role role) {
+        return String.valueOf(role);
+    }
+
     /**
      * Get the text representation of the role
      *
      * @param role Role to get text representation
-     *
      * @return String representation of the role
      */
     public static String getRoleText(Role role) {

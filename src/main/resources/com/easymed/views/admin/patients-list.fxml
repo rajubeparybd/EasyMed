@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -38,10 +37,68 @@
             <ScrollPane layoutY="66.0" prefHeight="664.0" prefWidth="1047.0" AnchorPane.bottomAnchor="0.0"
                         AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
                 <AnchorPane>
-                    <GridPane fx:id="patientContainer" prefHeight="655.0" prefWidth="1040.0">
+                    <GridPane fx:id="patientContainer" prefHeight="655.2" prefWidth="1040.0"
+                              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                              AnchorPane.topAnchor="0.0">
                         <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                         </rowConstraints>
+                        <columnConstraints>
+                            <ColumnConstraints/>
+                        </columnConstraints>
+                        <TableView fx:id="tableView" editable="true" nodeOrientation="LEFT_TO_RIGHT"
+                                   prefHeight="650.0" prefWidth="1065.0" stylesheets="@../../css/patientTable.css">
+                            <columns>
+                                <TableColumn fx:id="serialCount" prefWidth="40" styleClass="text-center">
+                                    <graphic>
+                                        <Label text="SN."/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="userIdColumn" prefWidth="40" styleClass="text-center">
+                                    <graphic>
+                                        <Label text="User ID"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="nameColumn" prefWidth="85">
+                                    <graphic>
+                                        <Label text="Name"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="emailColumn" prefWidth="85" sortable="false">
+                                    <graphic>
+                                        <Label text="Email"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="phoneColumn" prefWidth="85" sortable="false"
+                                             styleClass="text-center">
+                                    <graphic>
+                                        <Label text="Phone"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="ageColumn" prefWidth="65" styleClass="text-center">
+                                    <graphic>
+                                        <Label text="DOB"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="bloodGroupColumn" prefWidth="40" sortable="false"
+                                             styleClass="text-center">
+                                    <graphic>
+                                        <Label text="Blood"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="addressColumn" prefWidth="107.0" sortable="false">
+                                    <graphic>
+                                        <Label text="Address"/>
+                                    </graphic>
+                                </TableColumn>
+                            </columns>
+                            <GridPane.margin>
+                                <Insets left="10.0" top="10.0" right="10" bottom="10"/>
+                            </GridPane.margin>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
                     </GridPane>
                 </AnchorPane>
             </ScrollPane>
