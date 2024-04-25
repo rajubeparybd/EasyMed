@@ -1,10 +1,12 @@
 package com.easymed.controllers.admin;
 
+import com.easymed.utils.FXMLScene;
 import com.easymed.utils.Helpers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -50,6 +52,6 @@ public class DoctorController implements Initializable {
      */
     @FXML
     public void addDoctor(ActionEvent actionEvent) {
-        //TODO: Add doctor form
+        FXMLScene.switchScene("/com/easymed/views/admin/add-doctor.fxml", (Node) actionEvent.getSource());
     }
 }

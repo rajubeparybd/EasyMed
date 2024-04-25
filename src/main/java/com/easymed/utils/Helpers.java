@@ -23,6 +23,7 @@ public class Helpers {
      * Returns the title with the application name appended to it
      *
      * @param title Title of the page
+     *
      * @return The title of the page
      */
     public static String getTitle(String title) {
@@ -43,6 +44,7 @@ public class Helpers {
      * Returns the current date in the specified pattern
      *
      * @param pattern Date pattern
+     *
      * @return The current date
      */
     public static String getDate(String pattern) {
@@ -64,6 +66,7 @@ public class Helpers {
      * Returns the current time in the specified pattern
      *
      * @param pattern Time pattern
+     *
      * @return The current time
      */
     public static String getTime(String pattern) {
@@ -110,6 +113,7 @@ public class Helpers {
      * Check the json is valid or not
      *
      * @param json JSON
+     *
      * @return boolean
      */
     public static boolean isValidJson(String json) {
@@ -119,5 +123,30 @@ public class Helpers {
         } catch (JSONException e) {
             return false;
         }
+    }
+
+    /**
+     * Get the formatted phone number with country code
+     *
+     * @param phoneNumber Phone number
+     *
+     * @return Formatted phone number
+     */
+    public static String getFormattedPhoneNumber(String phoneNumber) {
+        if (!phoneNumber.startsWith("+88")) phoneNumber = "+88" + phoneNumber;
+
+        return phoneNumber.substring(0, 4) + " " + phoneNumber.substring(4, 8) + "-" + phoneNumber.substring(8);
+
+    }
+
+    /**
+     * Get the raw phone number without country code
+     *
+     * @param phoneNumber Phone number
+     *
+     * @return Raw phone number
+     */
+    public static String getRawPhoneNumber(String phoneNumber) {
+        return phoneNumber.replace("+88", "").replace(" ", "").replace("-", "");
     }
 }

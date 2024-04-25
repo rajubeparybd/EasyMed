@@ -13,6 +13,17 @@ public enum Gender {
     MALE, FEMALE, OTHER;
 
     /**
+     * Get the text representation of Gender
+     *
+     * @param gender gender to get text representation
+     *
+     * @return String representation
+     */
+    public static String getText(Gender gender) {
+        return String.valueOf(gender);
+    }
+
+    /**
      * Get the text representation of the gender
      *
      * @param gender Gender to get text representation

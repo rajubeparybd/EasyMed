@@ -1,0 +1,133 @@
+package com.easymed.database.services;
+
+import com.easymed.utils.DatabaseReadCall;
+import com.easymed.utils.DatabaseWriteCall;
+import com.easymed.utils.Hash;
+
+import java.util.HashMap;
+
+/**
+ * DoctorService for handling doctor related database operations
+ *
+ * @author Raju Bepary
+ * @since 1.0.0
+ */
+public class DoctorService {
+
+    /**
+     * Attempt to register a user as a doctor
+     *
+     * @param name       Name
+     * @param email      Email
+     * @param password   Password
+     * @param role       Role
+     * @param gender     Gender
+     * @param bloodGroup Blood group
+     * @param phone      Phone number
+     *
+     * @return DatabaseWriteCall
+     */
+    public static DatabaseWriteCall attemptDoctorRegistration(String name, String email, String password, String role, String gender, String bloodGroup, String phone) {
+        String query = "INSERT INTO users (name, email, password, role, phone";
+        String values = " VALUES (?, ?, ?, ?, ?";
+
+        if (gender != null) {
+            query += ", gender";
+            values += ", ?";
+        }
+        if (bloodGroup != null) {
+            query += ", blood_group";
+            values += ", ?";
+        }
+
+        query += ")";
+        values += ")";
+        String hashedPassword = Hash.make(password);
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        int index = 1;
+
+        placeholders.put(index++, name);
+        placeholders.put(index++, email);
+        placeholders.put(index++, hashedPassword);
+        placeholders.put(index++, role);
+        placeholders.put(index++, phone);
+
+        if (gender != null) placeholders.put(index++, gender);
+        if (bloodGroup != null) placeholders.put(index, bloodGroup);
+        String finalQuery = query + values;
+
+        return new DatabaseWriteCall(finalQuery, placeholders);
+    }
+
+    /**
+     * Get doctor id by email
+     *
+     * @param email Email
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getDoctorIdByEmail(String email) {
+        String query = "SELECT id FROM users WHERE email = ?";
+
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, email);
+
+        return new DatabaseReadCall(query, placeholders);
+    }
+
+    /**
+     * Attempt to register doctor profile
+     *
+     * @param user_id         user id of the doctor
+     * @param bio             bio
+     * @param spacialities    spacialities
+     * @param fees            doctor fees
+     * @param designation     designation
+     * @param hospital        hospital
+     * @param hospitalAddress Hospital address
+     * @param experience      experience
+     * @param education       education
+     * @param schedule        schedule
+     *
+     * @return DatabaseWriteCall
+     */
+    public static DatabaseWriteCall attemptDoctorProfileRegistration(String user_id, String bio, String spacialities, String fees, String designation, String hospital, String hospitalAddress, String experience, String education, String schedule) {
+        String query = "INSERT INTO doctors (user_id, bio, spacialities, fees, designation, hospital, hospital_address";
+        String values = " VALUES (?, ?, ?, ?, ?, ?, ?";
+
+        if (experience != null) {
+            query += ", experience";
+            values += ", ?";
+        }
+        if (education != null) {
+            query += ", education";
+            values += ", ?";
+        }
+        if (schedule != null) {
+            query += ", schedule";
+            values += ", ?";
+        }
+
+        query += ")";
+        values += ")";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        int index = 1;
+
+        placeholders.put(index++, user_id);
+        placeholders.put(index++, bio);
+        placeholders.put(index++, spacialities);
+        placeholders.put(index++, fees);
+        placeholders.put(index++, designation);
+        placeholders.put(index++, hospital);
+        placeholders.put(index++, hospitalAddress);
+
+        if (experience != null) placeholders.put(index++, experience);
+        if (education != null) placeholders.put(index++, education);
+        if (schedule != null) placeholders.put(index, schedule);
+
+        String finalQuery = query + values;
+
+        return new DatabaseWriteCall(finalQuery, placeholders);
+    }
+
+}
