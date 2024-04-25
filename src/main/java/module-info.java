@@ -8,6 +8,7 @@ module com.easymed {
     requires org.controlsfx.controls;
     requires MaterialFX;
     requires com.jfoenix;
+    requires org.json;
 
     opens com.easymed.controllers.auth to javafx.fxml;
     exports com.easymed.controllers.auth;

@@ -199,7 +199,7 @@ public class LoginController implements Initializable {
                     if (databaseReadCall.getValue().next()) {
                         Notification.success("Success", "Login successful");
 
-                        // User data to be passed to the dashboard scene
+                        // User data to be passed to the dashboard scene6
                         HashMap<String, String> userData = new HashMap<>();
                         ResultSet user = databaseReadCall.getValue();
                         userData.put("id", user.getString("id"));

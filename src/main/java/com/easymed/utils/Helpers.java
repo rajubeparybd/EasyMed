@@ -4,6 +4,8 @@ import io.github.cdimascio.dotenv.Dotenv;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,7 +23,6 @@ public class Helpers {
      * Returns the title with the application name appended to it
      *
      * @param title Title of the page
-     *
      * @return The title of the page
      */
     public static String getTitle(String title) {
@@ -42,7 +43,6 @@ public class Helpers {
      * Returns the current date in the specified pattern
      *
      * @param pattern Date pattern
-     *
      * @return The current date
      */
     public static String getDate(String pattern) {
@@ -64,7 +64,6 @@ public class Helpers {
      * Returns the current time in the specified pattern
      *
      * @param pattern Time pattern
-     *
      * @return The current time
      */
     public static String getTime(String pattern) {
@@ -105,5 +104,20 @@ public class Helpers {
                 node.getStyleClass().add("sidebarBtn");
             }
         });
+    }
+
+    /**
+     * Check the json is valid or not
+     *
+     * @param json JSON
+     * @return boolean
+     */
+    public static boolean isValidJson(String json) {
+        try {
+            new JSONObject(json);
+            return true;
+        } catch (JSONException e) {
+            return false;
+        }
     }
 }
