@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="730.0" prefWidth="1280.0"
+            style="-fx-background-color: #eff7f8;" stylesheets="@../../css/style.css"
+            xmlns="http://javafx.com/javafx/17.0.2-ea"
+            fx:controller="com.easymed.controllers.admin.AddPatientController">
+    <left>
+        <fx:include source="sidebar.fxml"/>
+    </left>
+    <center>
+        <AnchorPane prefHeight="588.0" prefWidth="1083.0">
+            <Label layoutX="27.0" layoutY="19.0" prefHeight="29.0" prefWidth="156.0" text="Add Patient" wrapText="true"
+                   AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="19.0">
+                <font>
+                    <Font name="System Bold" size="23.0"/>
+                </font>
+            </Label>
+            <ScrollPane layoutY="66.0" prefHeight="664.0" prefWidth="1047.0" AnchorPane.bottomAnchor="0.0"
+                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
+                <AnchorPane prefHeight="662.0" prefWidth="1043.0">
+                    <Pane layoutX="21.0" layoutY="16.0">
+                        <TextField fx:id="name" layoutY="28.0" onKeyTyped="#nameType" prefHeight="41.0"
+                                   prefWidth="280.0" promptText="Jhon Deo" styleClass="email"/>
+                        <Label text="Full Name">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+
+                        <ImageView fx:id="nameSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="248.0" layoutY="35.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/okIcon.png"/>
+                        </ImageView>
+                        <ImageView fx:id="nameWrong" fitHeight="32.0" fitWidth="29.0" layoutX="248.0" layoutY="35.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/cancelIcon.png"/>
+                        </ImageView>
+                        <Label fx:id="nameValidationFeedback" layoutX="3.0" layoutY="72.0" text="Invalid Name"
+                               textFill="#ff0404">
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </Label>
+                    </Pane>
+                    <Pane layoutX="365.0" layoutY="16.0">
+                        <TextField fx:id="email" layoutY="28.0" onKeyTyped="#emailType" prefHeight="41.0"
+                                   prefWidth="280.0" promptText="example@domain.com" styleClass="email"/>
+                        <Label text="Email Address">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="emailValidationFeedback" layoutX="1.0" layoutY="74.0" text="Invalid Email Address"
+                               textFill="#ff0404">
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </Label>
+                        <ImageView fx:id="emailSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="248.0" layoutY="35.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/okIcon.png"/>
+                        </ImageView>
+                        <ImageView fx:id="emailWrong" fitHeight="32.0" fitWidth="29.0" layoutX="248.0" layoutY="35.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/cancelIcon.png"/>
+                        </ImageView>
+                    </Pane>
+                    <Pane layoutX="713.0" layoutY="17.0">
+                        <PasswordField fx:id="password" layoutY="26.0" onKeyTyped="#passwordType" prefHeight="42.0"
+                                       prefWidth="280.0" promptText="Your Password" styleClass="email"/>
+                        <Label text="Password">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="passwordValidationFeedback" layoutX="3.0" layoutY="71.0"
+                               text="Password must be more than 6 digit" textFill="#ff0404">
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </Label>
+                        <ImageView fx:id="passwordSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="248.0"
+                                   layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/okIcon.png"/>
+                        </ImageView>
+                        <ImageView fx:id="passwordWrong" fitHeight="32.0" fitWidth="29.0" layoutX="248.0" layoutY="32.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/cancelIcon.png"/>
+                        </ImageView>
+                    </Pane>
+
+                    <Pane layoutX="20.0" layoutY="121.0">
+                        <TextField fx:id="phone" layoutY="28.0" onKeyTyped="#phoneType" prefHeight="41.0"
+                                   prefWidth="280.0" promptText="+8801878670666" styleClass="email"/>
+                        <Label text="Phone">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <ImageView fx:id="phoneSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="248.0" layoutY="35.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/okIcon.png"/>
+                        </ImageView>
+                        <ImageView fx:id="phoneWrong" fitHeight="32.0" fitWidth="29.0" layoutX="248.0" layoutY="35.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/cancelIcon.png"/>
+                        </ImageView>
+                        <Label fx:id="phoneValidationFeedback" layoutX="3.0" layoutY="72.0" text="Invalid phone"
+                               textFill="#ff0404">
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </Label>
+                    </Pane>
+                    <Pane layoutX="364.0" layoutY="121.0">
+                        <ComboBox fx:id="gender" layoutY="28.0" prefHeight="41.0" prefWidth="280.0" promptText="MALE"
+                                  styleClass="email"/>
+                        <Label text="Gender">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </Pane>
+                    <Pane layoutX="712.0" layoutY="122.0">
+                        <ComboBox fx:id="bloodGroup" layoutY="26.0" prefHeight="42.0" prefWidth="280.0" promptText="A+"
+                                  styleClass="email"/>
+                        <Label text="Blood Group">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </Pane>
+
+                    <Button fx:id="addPatientButton" layoutX="406.0" layoutY="226.0" mnemonicParsing="false"
+                            onAction="#addPatient" prefHeight="41.0" prefWidth="199.0"
+                            style="-fx-background-color: #48bc9f;" styleClass="btn1" text="Add Patient">
+                        <effect>
+                            <Lighting diffuseConstant="1.45">
+                                <bumpInput>
+                                    <Shadow/>
+                                </bumpInput>
+                                <light>
+                                    <Light.Distant/>
+                                </light>
+                            </Lighting>
+                        </effect>
+                    </Button>
+
+                </AnchorPane>
+            </ScrollPane>
+        </AnchorPane>
+    </center>
+</BorderPane>

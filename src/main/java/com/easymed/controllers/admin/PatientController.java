@@ -4,6 +4,7 @@ import com.easymed.database.models.Patient;
 import com.easymed.database.services.UserService;
 import com.easymed.enums.Role;
 import com.easymed.utils.DatabaseReadCall;
+import com.easymed.utils.FXMLScene;
 import com.easymed.utils.Helpers;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
@@ -12,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -115,8 +117,7 @@ public class PatientController implements Initializable {
      */
     @FXML
     public void addPatient(ActionEvent actionEvent) {
-        //TODO: Add patient form
-        System.out.println("Test");
+        FXMLScene.switchScene("/com/easymed/views/admin/add-patient.fxml", (Node) actionEvent.getSource());
     }
 
     /*

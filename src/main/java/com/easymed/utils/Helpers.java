@@ -1,8 +1,10 @@
 package com.easymed.utils;
 
+import com.easymed.enums.Gender;
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -148,5 +150,23 @@ public class Helpers {
      */
     public static String getRawPhoneNumber(String phoneNumber) {
         return phoneNumber.replace("+88", "").replace(" ", "").replace("-", "");
+    }
+
+    /**
+     * Set Gender ComboBox Items
+     *
+     * @param gender ComboBox to set items
+     */
+    public static void setGenderComboBox(ComboBox<String> gender) {
+        gender.getItems().addAll(Gender.getText(Gender.MALE), Gender.getText(Gender.FEMALE), Gender.getText(Gender.OTHER));
+    }
+
+    /**
+     * Set Blood Group ComboBox Items
+     *
+     * @param bloodGroup ComboBox to set items
+     */
+    public static void setBloodGroupComboBox(ComboBox<String> bloodGroup) {
+        bloodGroup.getItems().addAll("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-");
     }
 }
