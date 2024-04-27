@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -139,6 +140,8 @@ public class AddDoctorController implements Initializable {
         Platform.runLater(() -> {
             VBox sidebar = (VBox) rootPane.getLeft();
             Helpers.toggleMenuClass(sidebar, "doctors");
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setTitle("Add Doctor");
 
             gender.getItems().addAll(Gender.getText(Gender.MALE), Gender.getText(Gender.FEMALE), Gender.getText(Gender.OTHER));
             bloodGroup.getItems().addAll("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-");

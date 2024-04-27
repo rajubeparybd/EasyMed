@@ -19,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.json.JSONObject;
 
 import java.net.URL;
@@ -83,6 +84,8 @@ public class PatientController implements Initializable {
         Platform.runLater(() -> {
             VBox sidebar = (VBox) rootPane.getLeft();
             Helpers.toggleMenuClass(sidebar, "patients");
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setTitle("Patient Management");
             setupTableView();
         });
     }
