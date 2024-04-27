@@ -2,7 +2,6 @@ package com.easymed.controllers.admin;
 
 import com.easymed.database.services.AuthService;
 import com.easymed.database.services.DoctorService;
-import com.easymed.enums.Gender;
 import com.easymed.enums.Role;
 import com.easymed.utils.*;
 import javafx.application.Platform;
@@ -141,10 +140,10 @@ public class AddDoctorController implements Initializable {
             VBox sidebar = (VBox) rootPane.getLeft();
             Helpers.toggleMenuClass(sidebar, "doctors");
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setTitle("Add Doctor");
+            stage.setTitle(Helpers.getTitle("Add Doctor"));
 
-            gender.getItems().addAll(Gender.getText(Gender.MALE), Gender.getText(Gender.FEMALE), Gender.getText(Gender.OTHER));
-            bloodGroup.getItems().addAll("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-");
+            Helpers.setGenderComboBox(gender);
+            Helpers.setBloodGroupComboBox(bloodGroup);
 
             nameValidationFeedback.setVisible(false);
             nameWrong.setVisible(false);

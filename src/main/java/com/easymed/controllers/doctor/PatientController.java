@@ -32,7 +32,7 @@ public class PatientController implements Initializable {
             VBox sidebar = (VBox) rootPane.getLeft();
             Helpers.toggleMenuClass(sidebar, "patients");
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setTitle("Patients List");
+            stage.setTitle(Helpers.getTitle("Patients List"));
         });
     }
 

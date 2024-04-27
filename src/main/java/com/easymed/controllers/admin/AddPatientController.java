@@ -82,7 +82,7 @@ public class AddPatientController implements Initializable {
             VBox sidebar = (VBox) rootPane.getLeft();
             Helpers.toggleMenuClass(sidebar, "patients");
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setTitle("Add Patient");
+            stage.setTitle(Helpers.getTitle("Add Patient"));
 
             Helpers.setGenderComboBox(gender);
             Helpers.setBloodGroupComboBox(bloodGroup);

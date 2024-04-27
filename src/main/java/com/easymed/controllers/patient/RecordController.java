@@ -32,7 +32,7 @@ public class RecordController implements Initializable {
             VBox sidebar = (VBox) rootPane.getLeft();
             Helpers.toggleMenuClass(sidebar, "records");
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setTitle("Patient Records");
+            stage.setTitle(Helpers.getTitle("Patient Records"));
         });
     }
 

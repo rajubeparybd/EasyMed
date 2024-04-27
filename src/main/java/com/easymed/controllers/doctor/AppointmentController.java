@@ -32,7 +32,7 @@ public class AppointmentController implements Initializable {
             VBox sidebar = (VBox) rootPane.getLeft();
             Helpers.toggleMenuClass(sidebar, "appointments");
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setTitle("Appointments List");
+            stage.setTitle(Helpers.getTitle("Appointments List"));
         });
     }
 

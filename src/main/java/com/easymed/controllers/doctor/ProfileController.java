@@ -26,7 +26,7 @@ public class ProfileController implements Initializable {
             VBox sidebar = (VBox) rootPane.getLeft();
             Helpers.toggleMenuClass(sidebar, "profile");
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setTitle("Profile");
+            stage.setTitle(Helpers.getTitle("Profile"));
         });
     }
 }

@@ -59,7 +59,7 @@ public class ForgetPasswordChangePassController implements Initializable {
                 deleteOtp.getInsertedRows();
                 Stage stage = (Stage) contentArea.getScene().getWindow();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Password Changed", ButtonType.OK);
-                alert.setTitle("Changed Password");
+                alert.setTitle(Helpers.getTitle("Changed Password"));
                 alert.setHeaderText("Your Password has been changed successfully");
                 alert.show();
                 FXMLScene.switchScene("/com/easymed/views/auth/login.fxml", (Node) actionEvent.getSource());

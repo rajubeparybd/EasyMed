@@ -3,6 +3,7 @@ package com.easymed.database.services;
 import com.easymed.utils.DatabaseReadCall;
 import com.easymed.utils.DatabaseWriteCall;
 import com.easymed.utils.Hash;
+import com.easymed.utils.Helpers;
 
 import java.util.HashMap;
 
@@ -50,7 +51,7 @@ public class DoctorService {
         placeholders.put(index++, email);
         placeholders.put(index++, hashedPassword);
         placeholders.put(index++, role);
-        placeholders.put(index++, phone);
+        placeholders.put(index++, Helpers.getFormattedPhoneNumber(phone));
 
         if (gender != null) placeholders.put(index++, gender);
         if (bloodGroup != null) placeholders.put(index, bloodGroup);

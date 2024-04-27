@@ -32,7 +32,7 @@ public class DoctorController implements Initializable {
             VBox sidebar = (VBox) rootPane.getLeft();
             Helpers.toggleMenuClass(sidebar, "doctors");
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setTitle("Doctors List");
+            stage.setTitle(Helpers.getTitle("Doctors List"));
         });
     }
 
