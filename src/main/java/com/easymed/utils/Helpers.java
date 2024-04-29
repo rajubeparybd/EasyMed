@@ -169,4 +169,15 @@ public class Helpers {
     public static void setBloodGroupComboBox(ComboBox<String> bloodGroup) {
         bloodGroup.getItems().addAll("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-");
     }
+
+    /**
+     * get images folder
+     *
+     * @return string
+     */
+    public static String getImageFilePath() {
+        String path = System.getProperty("user.dir");
+        path += "\\src\\main\\resources\\com\\easymed\\images\\users\\";
+        return path;
+    }
 }

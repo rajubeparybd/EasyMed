@@ -1,6 +1,6 @@
 package com.easymed.controllers.admin;
 
-import com.easymed.database.models.Patient;
+import com.easymed.database.models.UserInfo;
 import com.easymed.database.services.UserService;
 import com.easymed.enums.Role;
 import com.easymed.utils.DatabaseReadCall;
@@ -31,6 +31,7 @@ import java.util.ResourceBundle;
 
 public class PatientController implements Initializable {
 
+
     @FXML
     private BorderPane rootPane;
 
@@ -41,42 +42,60 @@ public class PatientController implements Initializable {
     private GridPane patientContainer;
 
     @FXML
-    private TableView<Patient> tableView;
+    private TableView<UserInfo> tableView;
 
     @FXML
-    private TableColumn<Patient, String> userIdColumn;
+    private TableColumn<UserInfo, String> userIdColumn;
 
     @FXML
-    private TableColumn<Patient, Integer> serialCount;
+    private TableColumn<UserInfo, Integer> serialCount;
 
     @FXML
-    private TableColumn<Patient, String> nameColumn;
+    private TableColumn<UserInfo, String> nameColumn;
 
     @FXML
-    private TableColumn<Patient, String> emailColumn;
+    private TableColumn<UserInfo, String> emailColumn;
 
     @FXML
-    private TableColumn<Patient, String> phoneColumn;
+    private TableColumn<UserInfo, String> phoneColumn;
 
     @FXML
-    private TableColumn<Patient, String> addressColumn;
+    private TableColumn<UserInfo, String> ageColumn;
 
     @FXML
-    private TableColumn<Patient, String> bloodGroupColumn;
+    private TableColumn<UserInfo, String> genderColumn;
 
     @FXML
-    private TableColumn<Patient, String> ageColumn;
+    private TableColumn<UserInfo, String> bloodGroupColumn;
 
     @FXML
-    private TableColumn<Patient, String> createDateColumn;
+    private TableColumn<UserInfo, String> addressColumn;
+
 
     @FXML
-    private TableColumn<Patient, String> updateDateColumn;
+    private TableColumn<UserInfo, String> createDateColumn;
 
+    @FXML
+    private TableColumn<UserInfo, String> updateDateColumn;
+
+    /**
+     * Get the property of the data
+     *
+     * @param data Integer data
+     *
+     * @return SimpleObjectProperty
+     */
     private static SimpleObjectProperty<Integer> getProperty(Integer data) {
         return new SimpleObjectProperty<>(data);
     }
 
+    /**
+     * Get the property of the data
+     *
+     * @param data String data
+     *
+     * @return SimpleObjectProperty
+     */
     private static SimpleObjectProperty<String> getProperty(String data) {
         return new SimpleObjectProperty<>(data);
     }
@@ -139,9 +158,10 @@ public class PatientController implements Initializable {
         nameColumn.setCellValueFactory(data -> getProperty(data.getValue().getName()));
         emailColumn.setCellValueFactory(data -> getProperty(data.getValue().getEmail()));
         phoneColumn.setCellValueFactory(data -> getProperty(data.getValue().getPhone()));
-        addressColumn.setCellValueFactory(data -> getProperty(data.getValue().getAddress()));
-        bloodGroupColumn.setCellValueFactory(data -> getProperty(data.getValue().getBloodGroup()));
         ageColumn.setCellValueFactory(data -> getProperty(data.getValue().getDob()));
+        genderColumn.setCellValueFactory(data -> getProperty(data.getValue().getGender()));
+        bloodGroupColumn.setCellValueFactory(data -> getProperty(data.getValue().getBloodGroup()));
+        addressColumn.setCellValueFactory(data -> getProperty(data.getValue().getAddress()));
     }
 
     /*
@@ -151,7 +171,7 @@ public class PatientController implements Initializable {
         information.setOnSucceeded(event -> {
             ResultSet resultSet = information.getValue();
             if (resultSet != null) {
-                ObservableList<Patient> patients = FXCollections.observableArrayList();
+                ObservableList<UserInfo> patients = FXCollections.observableArrayList();
                 try {
                     Integer count = 0;
                     while (resultSet.next()) {
@@ -159,6 +179,7 @@ public class PatientController implements Initializable {
                         String phone = "N/A";
                         String blood = "N/A";
                         String dob = "N/A";
+                        String gender = "N/A";
 
                         String full_address = "N/A";
                         String addressJsonString = resultSet.getString("address");
@@ -181,8 +202,12 @@ public class PatientController implements Initializable {
                         if (date_of_birth != null) {
                             dob = date_of_birth;
                         }
+                        String user_gender = resultSet.getString("gender");
+                        if (user_gender != null) {
+                            gender = user_gender;
+                        }
 
-                        Patient patient = new Patient(
+                        UserInfo patient = new UserInfo(
                                 count,
                                 resultSet.getString("id"),
                                 resultSet.getString("name"),
@@ -190,7 +215,8 @@ public class PatientController implements Initializable {
                                 phone,
                                 full_address,
                                 blood,
-                                dob
+                                dob,
+                                gender
                         );
                         patients.add(patient);
                     }
