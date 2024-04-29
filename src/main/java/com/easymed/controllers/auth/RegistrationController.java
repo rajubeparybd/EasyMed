@@ -199,6 +199,8 @@ public class RegistrationController implements Initializable {
     public void nameType(KeyEvent keyEvent) {
         if (name.getText().isEmpty()) {
             Validations.inputIsInvalid(img1Success, img1Wrong, nameValidationFeedback, "Name is required");
+        } else if (!Validations.isNameValid(name.getText())) {
+            Validations.inputIsInvalid(img1Success, img1Wrong, nameValidationFeedback, "Invalid Name");
         } else {
             Validations.inputIsValid(img1Wrong, img1Success, nameValidationFeedback);
         }
@@ -234,10 +236,20 @@ public class RegistrationController implements Initializable {
         }
     }
 
+    /**
+     * login method switch to the login scene
+     *
+     * @param actionEvent action event
+     */
     public void login(ActionEvent actionEvent) {
         FXMLScene.switchScene("/com/easymed/views/auth/login.fxml", (Node) actionEvent.getSource());
     }
 
+    /**
+     * registration method validate the name, email and password and switch to the dashboard scene
+     *
+     * @param actionEvent action event
+     */
     public void registration(ActionEvent actionEvent) {
         String name = this.name.getText();
         String email = this.email.getText();

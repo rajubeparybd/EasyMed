@@ -38,7 +38,16 @@ public class AuthService {
         return new DatabaseReadCall(query, placeholders);
     }
 
-
+    /**
+     * Attempt to register a user with the given name, email, password, and role
+     *
+     * @param name     User's name
+     * @param email    User's email
+     * @param password User's password
+     * @param role     User's role
+     *
+     * @return DatabaseWriteCall
+     */
     public static DatabaseWriteCall attemptRegistration(String name, String email, String password, String role) {
         String query = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
         String hashedPassword = Hash.make(password);
@@ -140,8 +149,17 @@ public class AuthService {
         return new DatabaseWriteCall(query, placeholders);
     }
 
-    public static DatabaseWriteCall deleteForgetPasswordAllCode() {
-        String query = "DELETE FROM forget_password";
-        return new DatabaseWriteCall(query, new HashMap<>());
+    /**
+     * Delete all the codes sent to the user's email
+     *
+     * @return DatabaseWriteCall
+     */
+    public static DatabaseWriteCall deleteForgetPasswordAllCode(String email) {
+        String query = "DELETE FROM forget_password WHERE email=?";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+
+        placeholders.put(1, email);
+
+        return new DatabaseWriteCall(query, placeholders);
     }
 }

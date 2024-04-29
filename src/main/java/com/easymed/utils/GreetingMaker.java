@@ -13,14 +13,27 @@ public class GreetingMaker {
 
     private final LocalTime now;
 
+    /**
+     * Create a new GreetingMaker instance with the current time
+     */
     public GreetingMaker() {
         this.now = LocalTime.now();
     }
 
+    /**
+     * Create a new GreetingMaker instance with the given time
+     *
+     * @param now LocalTime
+     */
     public GreetingMaker(LocalTime now) {
         this.now = now;
     }
 
+    /**
+     * Print the greeting of the day based on the current time
+     *
+     * @return String
+     */
     public String printTimeOfDay() {
         if (between(MORNING, AFTER_NOON)) {
             return "Good Morning,";
@@ -33,6 +46,14 @@ public class GreetingMaker {
         }
     }
 
+    /**
+     * Check if the current time is between the given start and end time
+     *
+     * @param start LocalTime
+     * @param end   LocalTime
+     *
+     * @return boolean
+     */
     private boolean between(LocalTime start, LocalTime end) {
         return (!now.isBefore(start)) && now.isBefore(end);
     }

@@ -60,6 +60,9 @@ public class Email extends Task<Void> {
 
     }
 
+    /**
+     * Load the email credentials from the environment variables.
+     */
     private void loadCredential() {
         Dotenv env = Dotenv.load();
         this.username = env.get("EMAIL_USERNAME");
@@ -74,6 +77,11 @@ public class Email extends Task<Void> {
         this.properties.put("mail.smtp.port", env.get("EMAIL_PORT"));
     }
 
+    /**
+     * Send the email to the recipient
+     *
+     * @throws MessagingException if the email sending fails
+     */
     public void send() throws MessagingException {
         this.loadCredential();
 
@@ -87,6 +95,16 @@ public class Email extends Task<Void> {
         Transport.send(message);
     }
 
+    /**
+     * Prepare the email message with the recipient, subject, and content
+     *
+     * @param session Email session
+     * @param to      Recipient email address
+     * @param subject Email subject
+     * @param content Email content
+     *
+     * @return Message
+     */
     private Message prepareMessage(Session session, String to, String subject, String content) {
         Message message = new MimeMessage(session);
         try {

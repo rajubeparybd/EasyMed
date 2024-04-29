@@ -38,6 +38,11 @@ public class ForgetPasswordOtpController implements Initializable {
     private Stage mainStage;
     private String email;
 
+    /**
+     * Set the main stage of the application
+     *
+     * @param mainStage main stage
+     */
     public void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
     }
@@ -51,6 +56,16 @@ public class ForgetPasswordOtpController implements Initializable {
         warning.setVisible(false);
     }
 
+    /**
+     * Set the data of the user
+     *
+     * @param email       user email
+     * @param code        verification code
+     * @param contentArea content area
+     * @param img1        first image
+     * @param img2        second image
+     * @param img3        third image
+     */
     public void setData(String email, String code, Pane contentArea, ImageView img1, ImageView img2, ImageView img3) {
         this.email = email;
         this.code = code;
@@ -61,6 +76,11 @@ public class ForgetPasswordOtpController implements Initializable {
     }
 
 
+    /**
+     * Change verification code text field focus
+     *
+     * @param ke key event
+     */
     public void verifyCodePress(KeyEvent ke) {
         for (int i = 0; i < verifyBox.getChildren().size(); i++) {
             if (verifyBox.getChildren().get(i) instanceof TextField && verifyBox.getChildren().get(i).isFocused()) {
@@ -77,6 +97,13 @@ public class ForgetPasswordOtpController implements Initializable {
         }
     }
 
+    /**
+     * Verify the verification code
+     *
+     * @param ae action event
+     *
+     * @throws IOException input output exception
+     */
     public void verifyBtn(ActionEvent ae) throws IOException {
         warning.setVisible(false);
         StringBuilder verificationCode = new StringBuilder();

@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
@@ -78,16 +77,5 @@ public class DashboardController implements Initializable {
             String timeString = Helpers.getTime();
             date.setText(dateString + " | " + timeString);
         });
-    }
-
-
-    /**
-     * Search for a patient
-     *
-     * @param keyEvent key event
-     */
-    @FXML
-    public void search(KeyEvent keyEvent) {
-        //TODO: Implement the search functionality
     }
 }

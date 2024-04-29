@@ -4,15 +4,31 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 import java.time.LocalDate;
 
+/**
+ * EmailTemplate for handling email templates
+ *
+ * @author Raju Bepary
+ * @since 1.0.0
+ */
 public class EmailTemplate {
     private final String code;
     private final int year;
 
+    /**
+     * Create a new EmailTemplate instance
+     *
+     * @param code OTP code
+     */
     public EmailTemplate(String code) {
         this.code = code;
         this.year = LocalDate.now().getYear();
     }
 
+    /**
+     * Get the email template for the registration email
+     *
+     * @return String
+     */
     public String getForgetPassTemplate() {
         Dotenv env = Dotenv.load();
 

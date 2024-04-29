@@ -172,10 +172,20 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * signUp method switch to the registration scene
+     *
+     * @param actionEvent action event
+     */
     public void signUp(ActionEvent actionEvent) {
         FXMLScene.switchScene("/com/easymed/views/auth/registration.fxml", (Node) actionEvent.getSource());
     }
 
+    /**
+     * login method validate the email and password and switch to the dashboard scene
+     *
+     * @param actionEvent action event
+     */
     public void login(ActionEvent actionEvent) {
         String email = this.email.getText();
         String password = this.password.getText();
@@ -234,6 +244,11 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * forgetPassword method switch to the forget password scene
+     *
+     * @param actionEvent action event
+     */
     public void forgetPassword(ActionEvent actionEvent) {
         FXMLScene.switchScene("/com/easymed/views/auth/forget-password.fxml", (Node) actionEvent.getSource());
     }

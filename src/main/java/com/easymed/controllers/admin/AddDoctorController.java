@@ -315,6 +315,13 @@ public class AddDoctorController implements Initializable {
         }
     }
 
+    /**
+     * addDoctor method add doctor to the database and redirect to the doctors list page
+     *
+     * @param actionEvent Action Event
+     *
+     * @throws SQLException SQL Exception
+     */
     public void addDoctor(ActionEvent actionEvent) throws SQLException {
         String name = this.name.getText();
         String email = this.email.getText();

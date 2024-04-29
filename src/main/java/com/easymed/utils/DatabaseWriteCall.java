@@ -30,6 +30,13 @@ public class DatabaseWriteCall extends Task<Integer> {
         this.placeholders = placeholders;
     }
 
+    /**
+     * Prepare the statement with the placeholders
+     *
+     * @param placeholders HashMap of placeholders for the query
+     *
+     * @throws SQLException if a database access error occurs
+     */
     private void prepareStatement(HashMap<Integer, Object> placeholders) throws SQLException {
         for (int index : placeholders.keySet()) {
             switch (placeholders.get(index)) {

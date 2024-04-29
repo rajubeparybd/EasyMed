@@ -46,10 +46,20 @@ public class ForgetPasswordChangePassController implements Initializable {
         warning.setVisible(false);
     }
 
+    /**
+     * Set the email of the user
+     *
+     * @param email user email
+     */
     public void setData(String email) {
         this.email = email;
     }
 
+    /**
+     * Change the password of the user
+     *
+     * @param actionEvent event
+     */
     public void changePassword(ActionEvent actionEvent) {
         warning.setVisible(false);
         if (password.getText().equals(confirmPassword.getText())) {

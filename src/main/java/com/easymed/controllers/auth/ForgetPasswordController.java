@@ -1,5 +1,6 @@
 package com.easymed.controllers.auth;
 
+import com.easymed.database.models.User;
 import com.easymed.database.services.AuthService;
 import com.easymed.utils.*;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
@@ -143,7 +144,11 @@ public class ForgetPasswordController implements Initializable {
         }
     }
 
-
+    /**
+     * forgetPassword method send the code to the email address
+     *
+     * @param actionEvent
+     */
     public void forgetPassword(ActionEvent actionEvent) {
         String email = this.email.getText();
 
@@ -153,6 +158,7 @@ public class ForgetPasswordController implements Initializable {
         if (!Validations.isEmailValid(email)) this.emailValidationFeedback.setVisible(true);
 
         if (Validations.isEmailValid(email) && !isUserExistsByEmail) {
+            User.getInstance().setEmail(email);
             forgetPasswordButton.setDisable(true);
             spinner.setVisible(true);
             forgetPasswordFailedWarning.setVisible(false);

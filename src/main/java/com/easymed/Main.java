@@ -1,5 +1,6 @@
 package com.easymed;
 
+import com.easymed.database.models.User;
 import com.easymed.database.services.AuthService;
 import com.easymed.utils.DatabaseWriteCall;
 import com.easymed.utils.Helpers;
@@ -15,6 +16,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Main extends Application {
+    /**
+     * Main method to launch the application
+     *
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         launch();
     }
@@ -35,7 +41,7 @@ public class Main extends Application {
             alert.setContentText("Any unsaved changes will be lost.");
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    DatabaseWriteCall deleteCode = AuthService.deleteForgetPasswordAllCode();
+                    DatabaseWriteCall deleteCode = AuthService.deleteForgetPasswordAllCode(User.getInstance().getEmail());
                     deleteCode.getInsertedRows();
                     stage.close();
                 }
