@@ -1,13 +1,12 @@
 package com.easymed.database.models;
 
 /**
- * Patient class is used to store patient data and provide methods to access and modify the data.
+ * UserInfo Class to store user information
  *
  * @author Asif Ahammed
  * @since 1.0.0
  */
-public class Patient {
-
+public class UserInfo {
     private final Integer count;
 
     private final String userId;
@@ -24,6 +23,8 @@ public class Patient {
 
     private final String dob;
 
+    private final String gender;
+
     /**
      * Constructor for Patient
      *
@@ -36,7 +37,7 @@ public class Patient {
      * @param bloodGroup blood group
      * @param dob        date of birth
      */
-    public Patient(Integer count, String userId, String name, String email, String phone, String address, String bloodGroup, String dob) {
+    public UserInfo(Integer count, String userId, String name, String email, String phone, String address, String bloodGroup, String dob, String gender) {
         this.count = count;
         this.userId = userId;
         this.name = name;
@@ -45,6 +46,7 @@ public class Patient {
         this.address = address;
         this.bloodGroup = bloodGroup;
         this.dob = dob;
+        this.gender = gender;
     }
 
     /**
@@ -117,6 +119,10 @@ public class Patient {
      */
     public String getDob() {
         return dob;
+    }
+
+    public String getGender() {
+        return gender;
     }
 
 }
