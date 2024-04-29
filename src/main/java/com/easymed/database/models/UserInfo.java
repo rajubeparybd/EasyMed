@@ -1,6 +1,6 @@
 package com.easymed.database.models;
 
-public class Patient {
+public class UserInfo {
 
     private final Integer count;
 
@@ -18,6 +18,8 @@ public class Patient {
 
     private final String dob;
 
+    private final String gender;
+
     /**
      * @param count
      * @param userId
@@ -27,8 +29,9 @@ public class Patient {
      * @param address
      * @param bloodGroup
      * @param dob
+     * @param gender
      */
-    public Patient(Integer count, String userId, String name, String email, String phone, String address, String bloodGroup, String dob) {
+    public UserInfo(Integer count, String userId, String name, String email, String phone, String address, String bloodGroup, String dob, String gender) {
         this.count = count;
         this.userId = userId;
         this.name = name;
@@ -37,6 +40,7 @@ public class Patient {
         this.address = address;
         this.bloodGroup = bloodGroup;
         this.dob = dob;
+        this.gender = gender;
     }
 
     public Integer getCount() {
@@ -69,6 +73,10 @@ public class Patient {
 
     public String getDob() {
         return dob;
+    }
+
+    public String getGender() {
+        return gender;
     }
 
 }

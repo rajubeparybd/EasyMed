@@ -93,4 +93,15 @@ public class Validations {
     public static boolean isValidFees(String fees) {
         return fees.matches("^[0-9]*$");
     }
+
+    /**
+     * Check the zip code to validate
+     *
+     * @param zip zip code to check
+     *
+     * @return boolean
+     */
+    public static boolean isValidZip(String zip) {
+        return zip.matches("^[0-9]{4,5}$");
+    }
 }
