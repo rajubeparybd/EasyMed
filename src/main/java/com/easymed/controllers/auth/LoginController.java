@@ -165,8 +165,6 @@ public class LoginController implements Initializable {
     public void passwordType(KeyEvent keyEvent) {
         if (password.getText().isEmpty()) {
             Validations.inputIsInvalid(img2Success, img2Wrong, passwordValidationFeedback, "Password is required");
-        } else if (!Validations.isPasswordValid(password.getText())) {
-            Validations.inputIsInvalid(img2Success, img2Wrong, passwordValidationFeedback, "Password must be at least 6 characters long");
         } else {
             Validations.inputIsValid(img2Wrong, img2Success, passwordValidationFeedback);
         }
@@ -216,6 +214,7 @@ public class LoginController implements Initializable {
                         userData.put("name", user.getString("name"));
                         userData.put("email", user.getString("email"));
                         userData.put("role", user.getString("role"));
+                        userData.put("picture", user.getString("picture"));
 
                         // Switch to the dashboard scene based on the user role
                         if (Role.isPatient(user.getString("role"))) {

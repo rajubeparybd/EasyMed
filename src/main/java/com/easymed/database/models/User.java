@@ -19,6 +19,7 @@ public class User {
     protected String email;
 
     protected String role;
+    protected String profilePic;
 
     /**
      * Get the singleton instance of the User class
@@ -27,6 +28,24 @@ public class User {
      */
     public static User getInstance() {
         return INSTANCE;
+    }
+
+    /**
+     * Get the user profile picture
+     *
+     * @return profile picture
+     */
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    /**
+     * Set the user profile picture
+     *
+     * @param profilePic profile picture
+     */
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 
     /**
@@ -40,6 +59,7 @@ public class User {
         user.put("name", name);
         user.put("email", email);
         user.put("role", role);
+        user.put("picture", profilePic);
         return user;
     }
 
