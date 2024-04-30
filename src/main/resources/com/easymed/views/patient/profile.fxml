@@ -7,10 +7,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="730.0" prefWidth="1280.0"
             style="-fx-background-color: #eff7f8;" stylesheets="@../../css/style.css"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.easymed.controllers.patient.ProfileController">
+            xmlns="http://javafx.com/javafx/17.0.2-ea"
+            fx:controller="com.easymed.controllers.patient.ProfileController">
     <left>
         <fx:include source="sidebar.fxml"/>
     </left>
@@ -26,105 +28,106 @@
                         vbarPolicy="NEVER" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0"
                         AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="66.0">
                 <AnchorPane focusTraversable="true">
-                    <AnchorPane layoutX="21.0" layoutY="7.0" prefHeight="612.0" prefWidth="850.0">
-                        <Pane layoutX="11.0" layoutY="2.0">
-                            <Label fx:id="name" layoutX="117.0" prefHeight="50.0" prefWidth="304.0" text="N/A">
+                    <AnchorPane layoutX="45.0" layoutY="40.0" prefHeight="446.0" prefWidth="948.0"
+                                styleClass="user-profile">
+                        <Pane layoutX="27.0" layoutY="63.0">
+                            <Label fx:id="name" layoutX="134.0" prefHeight="50.0" prefWidth="287.0" text="N/A">
                                 <font>
                                     <Font name="System Bold" size="24.0"/>
                                 </font>
                             </Label>
-                            <Label prefHeight="50.0" prefWidth="116.0" text="Name           :">
+                            <Label prefHeight="50.0" prefWidth="157.0" text="Name           :">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
                         </Pane>
-                        <Pane layoutX="10.0" layoutY="52.0">
-                            <Label fx:id="email" layoutX="117.0" prefHeight="45.0" prefWidth="304.0" text="N/A">
+                        <Pane layoutX="24.0" layoutY="110.0">
+                            <Label fx:id="email" layoutX="135.0" prefHeight="45.0" prefWidth="286.0" text="N/A">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
-                            <Label prefHeight="46.0" prefWidth="116.0" text="Email            :">
-                                <font>
-                                    <Font size="18.0"/>
-                                </font>
-                            </Label>
-                        </Pane>
-                        <Pane layoutX="9.0" layoutY="145.0">
-                            <Label prefHeight="40.0" prefWidth="116.0" text="Phone           :">
-                                <font>
-                                    <Font size="18.0"/>
-                                </font>
-                            </Label>
-                            <Label fx:id="phone" layoutX="119.0" prefHeight="40.0" prefWidth="304.0" text="N/A">
+                            <Label prefHeight="46.0" prefWidth="136.0" text="Email            :">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
                         </Pane>
-                        <Pane layoutX="10.0" layoutY="99.0">
-                            <Label fx:id="userId" layoutX="112.0" prefHeight="40.0" prefWidth="304.0" text="N/A">
+                        <Pane layoutX="25.0" layoutY="192.0">
+                            <Label prefHeight="40.0" prefWidth="132.0" text="Phone           :">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
-                            <Label prefHeight="40.0" prefWidth="112.0" text="ID                 :">
-                                <font>
-                                    <Font size="18.0"/>
-                                </font>
-                            </Label>
-                        </Pane>
-                        <Pane layoutX="10.0" layoutY="190.0">
-                            <Label prefHeight="40.0" prefWidth="116.0" text="Date of Birth :">
-                                <font>
-                                    <Font size="18.0"/>
-                                </font>
-                            </Label>
-                            <Label fx:id="dateOfBirth" layoutX="119.0" prefHeight="40.0" prefWidth="304.0" text="N/A">
+                            <Label fx:id="phone" layoutX="129.0" prefHeight="40.0" prefWidth="294.0" text="N/A">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
                         </Pane>
-                        <Pane layoutX="8.0" layoutY="236.0">
-                            <Label prefHeight="40.0" prefWidth="116.0" text="Gender         :">
+                        <Pane layoutX="27.0" layoutY="152.0">
+                            <Label fx:id="userId" layoutX="132.0" prefHeight="40.0" prefWidth="284.0" text="N/A">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
-                            <Label fx:id="gender" layoutX="117.0" prefHeight="40.0" prefWidth="304.0" text="N/A">
-                                <font>
-                                    <Font size="18.0"/>
-                                </font>
-                            </Label>
-                        </Pane>
-                        <Pane layoutX="9.0" layoutY="289.0">
-                            <Label prefHeight="40.0" prefWidth="116.0" text="Blood group :">
-                                <font>
-                                    <Font size="18.0"/>
-                                </font>
-                            </Label>
-                            <Label fx:id="bloodGroup" layoutX="117.0" prefHeight="40.0" prefWidth="304.0" text="N/A">
+                            <Label prefHeight="40.0" prefWidth="129.0" text="User ID         :">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
                         </Pane>
-                        <Pane layoutX="10.0" layoutY="339.0">
-                            <Label prefHeight="40.0" prefWidth="116.0" text="Address        : ">
+                        <Pane layoutX="24.0" layoutY="237.0">
+                            <Label prefHeight="40.0" prefWidth="128.0" text="Date of Birth :">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
-                            <Label fx:id="address" layoutX="117.0" prefHeight="40.0" prefWidth="304.0" text="N/A"
+                            <Label fx:id="dateOfBirth" layoutX="133.0" prefHeight="40.0" prefWidth="290.0" text="N/A">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                        </Pane>
+                        <Pane layoutX="22.0" layoutY="273.0">
+                            <Label prefHeight="40.0" prefWidth="136.0" text="Gender          :">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="gender" layoutX="136.0" prefHeight="40.0" prefWidth="285.0" text="N/A">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                        </Pane>
+                        <Pane layoutX="25.0" layoutY="312.0">
+                            <Label prefHeight="40.0" prefWidth="135.0" text="Blood group  :">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="bloodGroup" layoutX="135.0" prefHeight="40.0" prefWidth="286.0" text="N/A">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                        </Pane>
+                        <Pane layoutX="474.0" layoutY="236.0">
+                            <Label prefHeight="40.0" prefWidth="130.0" text="Address        : ">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="address" layoutX="128.0" prefHeight="40.0" prefWidth="293.0" text="N/A"
                                    wrapText="true">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
                         </Pane>
-                        <Pane layoutX="525.0" layoutY="14.0">
+                        <Pane layoutX="700.0" layoutY="45.0">
                             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="178.0" stroke="BLACK"
                                        strokeType="INSIDE" width="177.0"/>
                             <ImageView id="profilePicture" fx:id="profilePic" fitHeight="176.0" fitWidth="174.0"
@@ -132,34 +135,34 @@
                                 <Image url="@../../images/patient.png"/>
                             </ImageView>
                         </Pane>
-                        <Pane layoutX="9.0" layoutY="482.0">
-                            <JFXButton onAction="#updateProfile" prefHeight="42.0" prefWidth="216.0" styleClass="btn2"
-                                       text="Update Profile"/>
-                        </Pane>
-                        <Pane layoutX="9.0" layoutY="386.0">
-                            <Label prefHeight="40.0" prefWidth="116.0" text="City               :">
+                        <Pane layoutX="9.0" layoutY="482.0"/>
+                        <Pane layoutX="472.0" layoutY="273.0">
+                            <Label prefHeight="40.0" prefWidth="131.0" text="City               :">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
-                            <Label fx:id="city" layoutX="117.0" prefHeight="40.0" prefWidth="304.0" text="N/A">
-                                <font>
-                                    <Font size="18.0"/>
-                                </font>
-                            </Label>
-                        </Pane>
-                        <Pane layoutX="9.0" layoutY="433.0">
-                            <Label prefHeight="40.0" prefWidth="116.0" text="Zip                :">
-                                <font>
-                                    <Font size="18.0"/>
-                                </font>
-                            </Label>
-                            <Label fx:id="zip" layoutX="117.0" prefHeight="40.0" prefWidth="304.0" text="N/A">
+                            <Label fx:id="city" layoutX="131.0" prefHeight="40.0" prefWidth="290.0" text="N/A">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
                         </Pane>
+                        <Pane layoutX="472.0" layoutY="309.0">
+                            <Label prefHeight="40.0" prefWidth="130.0" text="Zip                :">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="zip" layoutX="130.0" prefHeight="40.0" prefWidth="291.0" text="N/A">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                        </Pane>
+                        <JFXButton layoutX="27.0" layoutY="379.0" onAction="#updateProfile" prefHeight="42.0"
+                                   prefWidth="216.0" styleClass="btn2" text="Edit Profile"/>
+                        <Separator layoutX="185.0" layoutY="234.0" prefHeight="0.0" prefWidth="282.0"/>
                     </AnchorPane>
                 </AnchorPane>
             </ScrollPane>
