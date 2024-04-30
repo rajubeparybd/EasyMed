@@ -105,4 +105,33 @@ public class UserService {
 
         return new DatabaseWriteCall(query, placeholders);
     }
+
+    /**
+     * Get the number of users by role
+     *
+     * @param role Role
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getNumberOfUsers(String role) {
+        String query = "SELECT COUNT(*) AS count FROM users WHERE role = ?";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, role);
+        return new DatabaseReadCall(query, placeholders);
+    }
+
+    /**
+     * Get the chart data
+     *
+     * @param role Role
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getChartData(String role) {
+        String query = "SELECT COUNT(*) AS count, DATE(created_at) AS date FROM users WHERE role = ? GROUP BY DATE(created_at)";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, role);
+        return new DatabaseReadCall(query, placeholders);
+    }
+
 }

@@ -56,6 +56,20 @@ public class Helpers {
     }
 
     /**
+     * Returns the given date in the specified pattern
+     *
+     * @param pattern Date pattern
+     * @param date    Date
+     *
+     * @return The date
+     */
+    public static String getDate(Date date, String pattern) {
+        if (pattern == null) pattern = "EEEE, dd MMMM yyyy";
+        DateFormat dateFormat = new SimpleDateFormat(pattern);
+        return dateFormat.format(date);
+    }
+
+    /**
      * Returns the current time in the default pattern
      *
      * @return The current time

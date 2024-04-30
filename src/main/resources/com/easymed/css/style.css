@@ -150,3 +150,18 @@
     -fx-border-radius: 15px;
     -fx-background-radius: 15px;
 }
+
+.chart {
+    -fx-padding: 10px;
+    -fx-background-color: transparent;
+    -fx-legend-visible: false;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-pie {
+    -fx-border-color: derive(-fx-pie-color, 1%);
+    -fx-border-width: 0px;
+}
