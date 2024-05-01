@@ -131,4 +131,17 @@ public class DoctorService {
         return new DatabaseWriteCall(finalQuery, placeholders);
     }
 
+    /**
+     * get doctor information by id
+     *
+     * @param id doctor id
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getDoctorInformation(Integer id) {
+        String query = "SELECT * FROM users as u JOIN doctors as d ON u.id = d.user_id WHERE u.id = ?";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, id);
+        return new DatabaseReadCall(query, placeholders);
+    }
 }
