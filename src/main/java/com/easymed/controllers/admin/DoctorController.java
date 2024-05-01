@@ -12,13 +12,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -27,10 +27,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DoctorController implements Initializable {
@@ -76,12 +76,6 @@ public class DoctorController implements Initializable {
     private TableColumn<UserInfo, String> addressColumn;
 
 
-    @FXML
-    private TableColumn<UserInfo, String> createDateColumn;
-
-    @FXML
-    private TableColumn<UserInfo, String> updateDateColumn;
-
     private static SimpleObjectProperty<Integer> getProperty(Integer data) {
         return new SimpleObjectProperty<>(data);
     }
@@ -103,8 +97,10 @@ public class DoctorController implements Initializable {
                 if (event.getClickCount() == 1) {
                     UserInfo selectedUser = tableView.getSelectionModel().getSelectedItem();
                     if (selectedUser != null) {
-                        String userData = formatUserData(selectedUser);
-                        openUserDetailsModal(userData);
+                        String doctorId = formatDoctorData(selectedUser);
+                        openDoctorDetailsModal(doctorId);
+                    } else {
+                        System.out.println("Selected user is null");
                     }
                 }
             });
@@ -112,23 +108,22 @@ public class DoctorController implements Initializable {
     }
 
     /**
-     * @param userData User data in a string
+     * Doctor Details Modal
+     *
+     * @param doctorId User data in a string
      */
-    private void openUserDetailsModal(String userData) {
-        // TODO : show all info in a modal (data from doctors table)
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/easymed/views/admin/user-detail.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(scene);
-            stage.setTitle(Helpers.getTitle("Doctor Information"));
-            userDetailsController controller = fxmlLoader.getController();
-            controller.setDoctorData(userData);
-            stage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void openDoctorDetailsModal(String doctorId) {
+        FXMLScene fxmlLoader = FXMLScene.load("/com/easymed/views/admin/doctor-detail.fxml");
+        Scene scene = new Scene(fxmlLoader.getRoot());
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.setTitle(Helpers.getTitle("Doctor Information"));
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/easymed/images/EasyMedIcon.png")));
+        stage.getIcons().add(icon);
+        DoctorDetailsController controller = (DoctorDetailsController) fxmlLoader.getController();
+        controller.setDoctorId(doctorId);
+        stage.showAndWait();
     }
 
     /**
@@ -136,16 +131,8 @@ public class DoctorController implements Initializable {
      *
      * @return String
      */
-    private String formatUserData(UserInfo user) {
-        String sb = "Patient ID: " + user.getUserId() + "\n" +
-                "Name: " + user.getName() + "\n" +
-                "Email: " + user.getEmail() + "\n" +
-                "Phone: " + user.getPhone() + "\n" +
-                "Age: " + user.getDob() + "\n" +
-                "Gender: " + user.getGender() + "\n" +
-                "Blood Group: " + user.getBloodGroup() + "\n" +
-                "Address: " + user.getAddress() + "\n";
-        return sb;
+    private String formatDoctorData(UserInfo user) {
+        return user.getUserId();
     }
 
     /**
@@ -176,9 +163,9 @@ public class DoctorController implements Initializable {
         FXMLScene.switchScene("/com/easymed/views/admin/add-doctor.fxml", (Node) actionEvent.getSource());
     }
 
-    /*
-     *  for show patient information in a table
-     * */
+    /**
+     * for show patient information in a table
+     */
     private void setupTableView() {
         dataModelProperties();
         DatabaseReadCall getPatientsInfo = UserService.getUsersInfo(Role.getText(Role.DOCTOR));
@@ -202,6 +189,8 @@ public class DoctorController implements Initializable {
     }
 
     /**
+     * Show information in table
+     *
      * @param information DatabaseReadCall information
      */
     private void tableInformation(DatabaseReadCall information) {
@@ -258,7 +247,7 @@ public class DoctorController implements Initializable {
                         Users.add(user);
                     }
                 } catch (SQLException e) {
-                    System.out.println("PatientController: SQLException: " + e.getMessage());
+                    System.out.println("DoctorController: SQLException: " + e.getMessage());
                 }
                 tableView.setItems(Users);
             }

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane prefHeight="596.0" prefWidth="942.0" style="-fx-background-color: #eff7f8;" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easymed.controllers.admin.DoctorDetailsController">
+    <AnchorPane prefHeight="574.0" prefWidth="923.0" styleClass="container" stylesheets="@../../css/doctor.css">
+        <VBox layoutX="32.0" layoutY="22.0" prefHeight="574.4" prefWidth="852.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox prefHeight="402.0" prefWidth="1641.0" spacing="10.0">
+                <!-- Personal Information Section -->
+                <VBox prefHeight="414.0" prefWidth="433.0" spacing="10">
+                    <Label prefHeight="18.0" prefWidth="201.0" styleClass="section-title" text="Personal Information">
+                    </Label>
+                    <HBox spacing="10">
+                        <Label text="Name              :">
+                        </Label>
+                        <Label fx:id="nameLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Email               :">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="emailLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Phone             :">
+                        </Label>
+                        <Label fx:id="phoneLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="DOB                :" />
+                        <Label fx:id="dobLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Gender            :" />
+                        <Label fx:id="genderLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Blood Group   :" />
+                        <Label fx:id="bloodGroupLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Address          :" />
+                        <Label fx:id="addressLabel" text="N/A" />
+                    </HBox>
+                    <HBox layoutX="10.0" layoutY="307.0" spacing="10">
+                        <Label text="City                 :" />
+                        <Label fx:id="cityLabel" text="N/A" />
+                    </HBox>
+                    <HBox layoutX="10.0" layoutY="349.0" spacing="10">
+                        <Label text="Zip                  :" />
+                        <Label fx:id="zipLabel" text="N/A" />
+                    </HBox>
+                </VBox>
+
+                <!-- Professional Information Section -->
+                <VBox prefHeight="414.0" prefWidth="423.0" spacing="10">
+                    <Label styleClass="section-title" text="Professional Information">
+                    </Label>
+                    <HBox spacing="10">
+                        <Label text="Specialties     :" />
+                        <Label fx:id="specialtiesLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Fees               :" />
+                        <Label fx:id="feesLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Education      :" />
+                        <Label fx:id="educationLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Schedule        :" />
+                        <Label fx:id="scheduleLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Experience     :" />
+                        <Label fx:id="experienceLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Designation   :" />
+                        <Label fx:id="designationLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Bio                 :" />
+                        <Label fx:id="bioLabel" text="N/A" />
+                    </HBox>
+                </VBox>
+                <VBox alignment="TOP_CENTER" prefHeight="414.0" prefWidth="153.0">
+                    <AnchorPane style="-fx-background-color: white; -fx-border-color: black;">
+                        <ImageView fx:id="doctorPictureLabel" fitHeight="160.0" fitWidth="150.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </AnchorPane>
+                </VBox>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+                <VBox.margin>
+                    <Insets top="20.0" />
+                </VBox.margin>
+
+                <!-- Hospital Information Section -->
+                <VBox spacing="10">
+                    <Label styleClass="section-title" text="Hospital Information">
+                        <font>
+                            <Font size="18.0" />
+                        </font>
+                    </Label>
+                    <HBox spacing="10">
+                        <Label text="Hospital                :" />
+                        <Label fx:id="hospitalLabel" text="N/A" />
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Hospital Address  :" />
+                        <Label fx:id="hospitalAddressLabel" text="N/A" />
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </AnchorPane>
+</ScrollPane>
