@@ -8,11 +8,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="730.0" prefWidth="1280.0"
             style="-fx-background-color: #eff7f8;" stylesheets="@../../css/style.css"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.easymed.controllers.doctor.DoctorController">
+            xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.easymed.controllers.patient.DoctorController">
     <left>
         <fx:include source="sidebar.fxml"/>
     </left>
@@ -33,13 +32,11 @@
                 </ImageView>
             </Group>
 
-            <ScrollPane layoutY="66.0" prefHeight="664.0" prefWidth="1047.0" AnchorPane.bottomAnchor="0.0"
-                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
+            <ScrollPane hbarPolicy="NEVER" layoutY="66.0" prefHeight="664.0" prefWidth="1047.0" vbarPolicy="ALWAYS"
+                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                        AnchorPane.topAnchor="66.0">
                 <AnchorPane>
                     <GridPane fx:id="doctorContainer" prefHeight="655.0" prefWidth="1040.0">
-                        <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        </rowConstraints>
                     </GridPane>
                 </AnchorPane>
             </ScrollPane>
