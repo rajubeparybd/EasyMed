@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" prefHeight="235.0"
+            prefWidth="491.0"
+            style="-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;"
+            xmlns="http://javafx.com/javafx/17.0.2-ea"
+            fx:controller="com.easymed.controllers.doctor.AppointmentsCardController">
+    <HBox prefHeight="235.0" prefWidth="503.0" style="-fx-border-radius: 10; -fx-background-radius: 10;">
+        <VBox prefHeight="278.0" prefWidth="283.0" spacing="10.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+            <HBox>
+                <Label fx:id="nameLabel" text="Asif Ahammed">
+                    <font>
+                        <Font name="System Bold" size="24.0"/>
+                    </font>
+                </Label>
+            </HBox>
+            <HBox>
+                <Label layoutX="10.0" layoutY="10.0" text="Email:">
+                    <font>
+                        <Font name="System Bold" size="16.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="emailLabel" text="asid@gmail.com">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Label>
+            </HBox>
+            <VBox prefHeight="97.0" prefWidth="267.0">
+                <Label text="symptoms:">
+                    <font>
+                        <Font name="System Bold" size="16.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="setReasonLabel" alignment="TOP_LEFT" prefHeight="71.0" prefWidth="273.0"
+                       text="Eye-problem" wrapText="true">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Label>
+            </VBox>
+            <VBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                    <Label prefHeight="18.0" prefWidth="56.0" text="Date:">
+                        <font>
+                            <Font name="System Bold" size="16.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="appointmentDateLabel" prefHeight="18.0" prefWidth="88.0" text="dd/mm/yyy">
+                        <font>
+                            <Font size="16.0"/>
+                        </font>
+                    </Label>
+                </HBox>
+            </VBox>
+            <VBox layoutX="20.0" layoutY="210.0">
+                <Button fx:id="checkAppointment" onAction="#checkAppointmentButton" mnemonicParsing="false"
+                        styleClass="btn3"
+                        text="Check Patient"/>
+            </VBox>
+        </VBox>
+        <VBox alignment="CENTER_LEFT">
+            <AnchorPane prefHeight="235.0" prefWidth="234.0" style="-fx-border-radius: 10px;">
+                <ImageView fx:id="profilePicLabel" fitHeight="209.0" fitWidth="201.0" layoutX="13.0" layoutY="13.0"
+                           style="-fx-border-radius: 10px;"/>
+            </AnchorPane>
+        </VBox>
+    </HBox>
+</AnchorPane>
