@@ -31,8 +31,9 @@
                     <Image url="@../../images/icons8-search-50.png"/>
                 </ImageView>
             </Group>
-            <ScrollPane layoutY="66.0" prefHeight="664.0" prefWidth="1047.0" AnchorPane.bottomAnchor="0.0"
-                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
+            <ScrollPane hbarPolicy="NEVER" layoutY="66.0" prefHeight="664.0" prefWidth="1047.0"
+                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                        AnchorPane.topAnchor="66.0">
                 <AnchorPane>
                     <GridPane fx:id="patientContainer" prefHeight="655.0" prefWidth="1040.0">
                     </GridPane>

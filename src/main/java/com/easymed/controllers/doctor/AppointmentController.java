@@ -25,11 +25,9 @@ import java.util.ResourceBundle;
 public class AppointmentController implements Initializable {
     private final User user = User.getInstance();
     @FXML
-    private BorderPane rootPane;
-
+    public TextField searchBox;
     @FXML
-    private TextField searchBox;
-
+    private BorderPane rootPane;
     @FXML
     private GridPane patientContainer;
 

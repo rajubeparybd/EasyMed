@@ -98,4 +98,87 @@ public class AppointmentService {
         placeholders.put(1, id);
         return new DatabaseWriteCall(query, placeholders);
     }
+
+    /**
+     * Count All To Days Appointment for Doctor
+     *
+     * @param id Integer
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall countAppointments(Integer id) {
+        String query = "SELECT COUNT(*) FROM appointments WHERE DATE(appointment_date) = CURDATE() AND doctor_id = ?";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, id);
+        return new DatabaseReadCall(query, placeholders);
+
+    }
+
+    /**
+     * get All To Days Appointment information for Doctor
+     *
+     * @param doctorId Integer
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getToDaysAppointments(Integer doctorId) {
+        String query = "SELECT * " +
+                "FROM appointments AS ap " +
+                "INNER JOIN users AS us ON ap.patient_id = us.id " +
+                "WHERE DATE(ap.appointment_date) = CURDATE() " +
+                "AND ap.doctor_id = ? AND status = 'Scheduled'";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, doctorId);
+        return new DatabaseReadCall(query, placeholders);
+    }
+
+    /**
+     * get search information of To Days Appointment for Doctor
+     *
+     * @param doctorId Integer
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getToDaysAppointments(Integer doctorId, String searchText) {
+        String query = "SELECT * " +
+                "FROM appointments AS ap " +
+                "INNER JOIN users AS us ON ap.patient_id = us.id " +
+                "WHERE DATE(ap.appointment_date) = CURDATE() " +
+                "AND ap.doctor_id = ? " +
+                "AND (us.name LIKE ? OR us.email LIKE ?)";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, doctorId);
+        String likeSearchText = "%" + searchText + "%";
+        placeholders.put(2, likeSearchText);
+        placeholders.put(3, likeSearchText);
+        return new DatabaseReadCall(query, placeholders);
+    }
+
+    /**
+     * get Chart Data for Appointments for Doctor Dashboard
+     *
+     * @param doctorId Integer
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getChartDataForAppointments(Integer doctorId) {
+        String query = "SELECT COUNT(*) AS count, DATE(created_at) AS date FROM appointments WHERE status ='Scheduled' AND doctor_id = ? GROUP BY DATE(created_at)";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, doctorId);
+        return new DatabaseReadCall(query, placeholders);
+    }
+
+    /**
+     * get Chart Data for Patient for Doctor Dashboard
+     *
+     * @param doctorId Integer
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getChartDataForPatients(Integer doctorId) {
+        String query = "SELECT COUNT(*) AS count, DATE(created_at) AS date FROM appointments WHERE status ='Completed' AND doctor_id = ? GROUP BY DATE(created_at)";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, doctorId);
+        return new DatabaseReadCall(query, placeholders);
+    }
 }
