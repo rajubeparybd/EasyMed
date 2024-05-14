@@ -5,10 +5,7 @@ import com.easymed.database.services.AppointmentService;
 import com.easymed.database.services.IllnessService;
 import com.easymed.database.services.MedicineService;
 import com.easymed.database.services.PrescriptionService;
-import com.easymed.utils.DatabaseReadCall;
-import com.easymed.utils.DatabaseWriteCall;
-import com.easymed.utils.Helpers;
-import com.easymed.utils.Notification;
+import com.easymed.utils.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -167,6 +164,9 @@ public class CheckAppointmentController implements Initializable {
         if (illnessDataIsValid && medicineDataIsValid && nextCheckUpDataIsValid) {
             DatabaseWriteCall createPrescription = PrescriptionService.AttemptPrescription(patient_id, doctor_id, appointment_id, next_checkupDate);
             insertPrescription(createPrescription);
+
+            FXMLScene.switchScene("/com/easymed/views/doctor/appointments-list.fxml", (Node) actionEvent.getSource());
+
         }
 
 
