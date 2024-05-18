@@ -175,4 +175,20 @@ public class DoctorService {
         placeholders.put(index, id);
         return new DatabaseWriteCall(query, placeholders);
     }
+
+    public static DatabaseReadCall getDoctorsInformation() {
+        String query = "SELECT * FROM users as u JOIN doctors as d ON u.id = d.user_id";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        return new DatabaseReadCall(query, placeholders);
+    }
+
+    public static DatabaseReadCall searchDocsInformations(String searchText) {
+        String query = "SELECT * FROM users as u JOIN doctors as d ON u.id = d.user_id " + "WHERE " + "(name LIKE ? OR " + "email LIKE ? OR " + "hospital LIKE ? OR" + " hospital_address LIKE ? OR " + "spacialities LIKE ?)";
+
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        for (int i = 1; i <= 5; i++) {
+            placeholders.put(i, "%" + searchText + "%");
+        }
+        return new DatabaseReadCall(query, placeholders);
+    }
 }

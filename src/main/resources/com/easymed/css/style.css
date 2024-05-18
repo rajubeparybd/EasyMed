@@ -33,6 +33,14 @@
     -fx-font-weight: bolder;
 }
 
+.btn3 {
+    -fx-padding: 4px 8px;
+    -fx-text-fill: white;
+    -fx-background-color: #4dd1ce;
+    -fx-font-size: 12px;
+    -fx-font-weight: bolder;
+}
+
 .sidebarBtn-active {
     -fx-text-fill: white;
     -fx-background-color: #4dd1ce;
@@ -49,7 +57,7 @@
     -fx-cursor: hand;
 }
 
-.btn1:hover, .btn2:hover, .sidebarBtn-active:hover {
+.btn1:hover, .btn2:hover, .btn3:hover, .sidebarBtn-active:hover {
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
     -fx-cursor: hand;
 }

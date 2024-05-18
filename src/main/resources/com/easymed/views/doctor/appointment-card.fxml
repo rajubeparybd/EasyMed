@@ -5,19 +5,20 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.VBox?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="80.0" prefWidth="300.0" styleClass="appointment-card"
             xmlns="http://javafx.com/javafx/17.0.2-ea"
             fx:controller="com.easymed.controllers.doctor.AppointmentCardController">
-    <Circle fx:id="patientImage" fill="DODGERBLUE" layoutX="43.0" layoutY="40.0" radius="32.0" stroke="#00e5d2"
-            strokeType="OUTSIDE" strokeWidth="2.0"/>
+    <VBox layoutX="9.0" layoutY="6.0">
+        <ImageView fx:id="patientProfileImage" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+    </VBox>
     <Label fx:id="patientName" layoutX="90.0" layoutY="16.0" style="-fx-font-size: 18; -fx-font-weight: bold;"
            text="Name"/>
-    <Label fx:id="patientType" layoutX="90.0" layoutY="39.0" text="patient type"/>
+    <Label fx:id="patientEmail" layoutX="90.0" layoutY="39.0" text="patient type"/>
     <JFXButton fx:id="viewAppointment" graphicTextGap="0.0" layoutX="224.0" layoutY="15.0"
                onAction="#viewAppointmentDetails" style="-fx-background-color: #ceebee; -fx-background-radius: 10;"
-               text=" " AnchorPane.bottomAnchor="14.0"
-               AnchorPane.rightAnchor="10.0" styleClass="appointment-view">
+               styleClass="appointment-view" text=" " AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="10.0">
         <graphic>
             <ImageView fitHeight="43.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../../images/icons8-closed-eye-150.png"/>

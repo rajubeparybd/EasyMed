@@ -568,9 +568,10 @@ public class UpdateProfileController implements Initializable {
     private void updateUserInformation(DatabaseWriteCall attemptUpdateUserData) {
         attemptUpdateUserData.setOnSucceeded(event -> {
             Integer rowsAffected = attemptUpdateUserData.getValue();
-            if (rowsAffected != null && rowsAffected > 0)
+            if (rowsAffected != null && rowsAffected > 0) {
                 Notification.success("User data updated successfully.");
-            else
+                FXMLScene.switchScene("/com/easymed/views/patient/profile.fxml", rootPane);
+            } else
                 Notification.error("User data update failed.");
         });
         attemptUpdateUserData.setOnFailed(event -> {

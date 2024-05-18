@@ -33,15 +33,12 @@
                 </ImageView>
             </Group>
 
-            <ScrollPane layoutY="66.0" prefHeight="664.0" prefWidth="1047.0" AnchorPane.bottomAnchor="0.0"
-                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
-                <AnchorPane>
-                    <GridPane fx:id="doctorContainer" prefHeight="655.0" prefWidth="1040.0">
-                        <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        </rowConstraints>
-                    </GridPane>
-                </AnchorPane>
+            <ScrollPane hbarPolicy="NEVER" layoutY="66.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0"
+                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                        AnchorPane.topAnchor="66.0">
+                <GridPane fx:id="doctorContainer" prefHeight="655.0"
+                          prefWidth="700.0" alignment="top_left">
+                </GridPane>
             </ScrollPane>
         </AnchorPane>
     </center>

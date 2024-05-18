@@ -1,4 +1,5 @@
-package com.easymed.controllers.doctor;
+package com.easymed.controllers.patient;
+
 
 import com.easymed.database.services.DoctorService;
 import com.easymed.utils.DatabaseReadCall;
@@ -68,10 +69,10 @@ public class DoctorController implements Initializable {
                     doctorContainer.setHgap(10);
                     doctorContainer.setVgap(10);
                     while (resultSet.next()) {
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/easymed/views/doctor/doctor-profile.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/easymed/views/patient/doctors-card.fxml"));
                         AnchorPane doctorProfilePane = fxmlLoader.load();
                         DoctorProfileController doctorProfileController = fxmlLoader.getController();
-
+                        String id = resultSet.getString("id");
                         String name = resultSet.getString("name");
                         String email = resultSet.getString("email");
                         String specialization = resultSet.getString("spacialities");
@@ -79,7 +80,7 @@ public class DoctorController implements Initializable {
                         String hospitalAddress = resultSet.getString("hospital_address");
                         String doctorProfilePic = resultSet.getString("picture");
 
-                        doctorProfileController.setProfileData(name, email, specialization, hospitalName, hospitalAddress, doctorProfilePic);
+                        doctorProfileController.setProfileData(id, name, email, specialization, hospitalName, hospitalAddress, doctorProfilePic);
                         doctorContainer.add(doctorProfilePane, col, row);
                         col++;
                         if (col > maxcolumn) {
@@ -106,7 +107,6 @@ public class DoctorController implements Initializable {
     public void search(KeyEvent keyEvent) {
         String query = searchBox.getText();
         if (query.length() >= 3) {
-            // doctorContainer.getChildren().clear();
             DatabaseReadCall getSearchInformation = DoctorService.searchDocsInformations(query);
             loadInformation(getSearchInformation);
         } else {
@@ -114,3 +114,4 @@ public class DoctorController implements Initializable {
         }
     }
 }
+

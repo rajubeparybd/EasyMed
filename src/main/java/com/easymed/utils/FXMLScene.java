@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -88,6 +89,29 @@ public class FXMLScene {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+    }
+
+    /**
+     * FXMLScene class or wherever your switchScene method is defined
+     *
+     * @param fxmlPath String
+     * @param node     Node
+     *
+     * @return FXMLLoader
+     */
+    public static <T> T switchFxmlScene(String fxmlPath, Node node) {
+        FXMLLoader loader = new FXMLLoader(FXMLScene.class.getResource(fxmlPath));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+            return loader.getController(); // Return the loaded controller instance
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
