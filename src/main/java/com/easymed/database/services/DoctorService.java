@@ -144,4 +144,35 @@ public class DoctorService {
         placeholders.put(1, id);
         return new DatabaseReadCall(query, placeholders);
     }
+
+    public static DatabaseWriteCall attemptUpdateDoctorInformation(Integer id, String bio, String spacialities, String fees, String designation, String hospital, String hospitalAddress, String experience, String education, String schedule) {
+        String query = "UPDATE doctors SET spacialities = ?, fees = ?, designation = ?, hospital = ?, hospital_address = ?";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        int index = 1;
+        placeholders.put(index++, spacialities);
+        placeholders.put(index++, fees);
+        placeholders.put(index++, designation);
+        placeholders.put(index++, hospital);
+        placeholders.put(index++, hospitalAddress);
+
+        if (bio != null) {
+            query += ", bio = ?";
+            placeholders.put(index++, bio);
+        }
+        if (experience != null) {
+            query += ", experience = ?";
+            placeholders.put(index++, experience);
+        }
+        if (education != null) {
+            query += ", education = ?";
+            placeholders.put(index++, education);
+        }
+        if (schedule != null) {
+            query += ", schedule = ?";
+            placeholders.put(index++, schedule);
+        }
+        query += " WHERE user_id = ?";
+        placeholders.put(index, id);
+        return new DatabaseWriteCall(query, placeholders);
+    }
 }
