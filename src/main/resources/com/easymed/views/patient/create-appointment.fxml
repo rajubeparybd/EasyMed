@@ -33,7 +33,7 @@
                                 <Font size="16.0"/>
                             </font>
                         </TextArea>
-                        <Label layoutX="37.0" layoutY="45.0" prefHeight="27.0" prefWidth="302.0"
+                        <Label layoutX="37.0" layoutY="45.0" prefHeight="27.0" prefWidth="493.0"
                                text="Give some details of your illness :">
                             <font>
                                 <Font name="System Bold" size="18.0"/>

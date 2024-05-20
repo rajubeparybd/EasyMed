@@ -1,7 +1,8 @@
-package com.easymed.controllers.patient;
+package com.easymed.controllers.doctor;
 
 import com.easymed.database.models.User;
 import com.easymed.database.services.AuthService;
+import com.easymed.database.services.DoctorService;
 import com.easymed.database.services.UserService;
 import com.easymed.utils.*;
 import javafx.application.Platform;
@@ -23,7 +24,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -137,6 +137,63 @@ public class UpdateProfileController implements Initializable {
     private ImageView imgProfile;
 
     @FXML
+    private TextField bio;
+
+    @FXML
+    private TextField spacialities;
+    @FXML
+    private Label spacialitiesValidationFeedback;
+    @FXML
+    private ImageView spacialitiesSuccess;
+    @FXML
+    private ImageView spacialitiesWrong;
+
+    @FXML
+    private TextField fees;
+    @FXML
+    private Label feesValidationFeedback;
+    @FXML
+    private ImageView feesSuccess;
+    @FXML
+    private ImageView feesWrong;
+
+    @FXML
+    private TextField designation;
+    @FXML
+    private Label designationValidationFeedback;
+    @FXML
+    private ImageView designationSuccess;
+    @FXML
+    private ImageView designationWrong;
+
+    @FXML
+    private TextField hospital;
+    @FXML
+    private Label hospitalValidationFeedback;
+    @FXML
+    private ImageView hospitalSuccess;
+    @FXML
+    private ImageView hospitalWrong;
+
+    @FXML
+    private TextField hospital_address;
+    @FXML
+    private Label hospitalAddressValidationFeedback;
+    @FXML
+    private ImageView hospitalAddressSuccess;
+    @FXML
+    private ImageView hospitalAddressWrong;
+
+    @FXML
+    private TextField experience;
+
+    @FXML
+    private TextField education;
+
+    @FXML
+    private TextField schedule;
+
+    @FXML
     private BorderPane rootPane;
 
     @FXML
@@ -200,9 +257,29 @@ public class UpdateProfileController implements Initializable {
             profilePictureValidationFeedback.setVisible(false);
             profilePictureSuccess.setVisible(false);
             profilePictureWrong.setVisible(false);
+
+            spacialitiesValidationFeedback.setVisible(false);
+            spacialitiesSuccess.setVisible(false);
+            spacialitiesWrong.setVisible(false);
+
+            feesValidationFeedback.setVisible(false);
+            feesSuccess.setVisible(false);
+            feesWrong.setVisible(false);
+
+            designationValidationFeedback.setVisible(false);
+            designationSuccess.setVisible(false);
+            designationWrong.setVisible(false);
+
+            hospitalValidationFeedback.setVisible(false);
+            hospitalSuccess.setVisible(false);
+            hospitalWrong.setVisible(false);
+
+            hospitalAddressValidationFeedback.setVisible(false);
+            hospitalAddressSuccess.setVisible(false);
+            hospitalAddressWrong.setVisible(false);
         });
 
-        DatabaseReadCall getUserInformation = UserService.getUserInfo(this.user.getId(), this.user.getEmail());
+        DatabaseReadCall getUserInformation = DoctorService.getDoctorInformation(this.user.getId());
         setUserInformation(getUserInformation);
         new Thread(getUserInformation).start();
 
@@ -409,6 +486,21 @@ public class UpdateProfileController implements Initializable {
     }
 
     /**
+     * feesType method validate fees address while type in the fees input box
+     *
+     * @param keyEvent Type Event
+     */
+    public void feesType(KeyEvent keyEvent) {
+        if (fees.getText().isEmpty()) {
+            Validations.inputIsInvalid(feesSuccess, feesWrong, feesValidationFeedback, "Fees is required");
+        } else if (!Validations.isValidFees(fees.getText())) {
+            Validations.inputIsInvalid(feesSuccess, feesWrong, feesValidationFeedback, "Invalid Fees");
+        } else {
+            Validations.inputIsValid(feesWrong, feesSuccess, feesValidationFeedback);
+        }
+    }
+
+    /**
      * UpdateButton for update user information in database
      *
      * @param actionEvent ActionEvent button
@@ -428,6 +520,15 @@ public class UpdateProfileController implements Initializable {
         LocalDate dobValue = dob.getValue();
         String dob = dobValue != null ? dobValue.toString() : null;
         String profilePicture = this.profilePicture.getText();
+        String bio = this.bio.getText();
+        String spacialities = this.spacialities.getText();
+        String fees = this.fees.getText();
+        String designation = this.designation.getText();
+        String hospital = this.hospital.getText();
+        String hospitalAddress = this.hospital_address.getText();
+        String experience = this.experience.getText();
+        String education = this.education.getText();
+        String schedule = this.schedule.getText();
 
         if (name.isEmpty())
             Validations.inputIsInvalid(nameSuccess, nameWrong, nameValidationFeedback, "Name is required");
@@ -481,16 +582,40 @@ public class UpdateProfileController implements Initializable {
         else
             Validations.inputIsValid(profilePictureWrong, profilePictureSuccess, profilePictureValidationFeedback);
 
+        if (spacialities.isEmpty())
+            Validations.inputIsInvalid(spacialitiesSuccess, spacialitiesWrong, spacialitiesValidationFeedback, "Spacialities is required");
+        else
+            Validations.inputIsValid(spacialitiesWrong, spacialitiesSuccess, spacialitiesValidationFeedback);
 
-        if (!isUserExistsByEmail && !name.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty() && !zip.isEmpty() && gender != null && bloodGroup != null && dob != null && !profilePicture.isEmpty()) {
+        if (fees.isEmpty())
+            Validations.inputIsInvalid(feesSuccess, feesWrong, feesValidationFeedback, "Fees is required");
+        else
+            Validations.inputIsValid(feesWrong, feesSuccess, feesValidationFeedback);
+
+        if (designation.isEmpty())
+            Validations.inputIsInvalid(designationSuccess, designationWrong, designationValidationFeedback, "Designation is required");
+        else
+            Validations.inputIsValid(designationWrong, designationSuccess, designationValidationFeedback);
+
+        if (hospital.isEmpty())
+            Validations.inputIsInvalid(hospitalSuccess, hospitalWrong, hospitalValidationFeedback, "Hospital is required");
+        else
+            Validations.inputIsValid(hospitalWrong, hospitalSuccess, hospitalValidationFeedback);
+
+        if (hospitalAddress.isEmpty())
+            Validations.inputIsInvalid(hospitalAddressSuccess, hospitalAddressWrong, hospitalAddressValidationFeedback, "Hospital Address is required");
+        else
+            Validations.inputIsValid(hospitalAddressWrong, hospitalAddressSuccess, hospitalAddressValidationFeedback);
+
+
+        if (!isUserExistsByEmail && !name.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty() && !zip.isEmpty() && gender != null && bloodGroup != null && dob != null && !profilePicture.isEmpty() && !spacialities.isEmpty() && !fees.isEmpty() && !designation.isEmpty() && !hospital.isEmpty() && !hospitalAddress.isEmpty()
+        ) {
 
             DatabaseWriteCall attemptUpdateUserData = UserService.attemptUpdateUserInformation(this.user.getId(), this.user.getEmail(), name, email, password, phone, address, city, zip, gender, bloodGroup, dob, profilePicture);
+            DatabaseWriteCall attemptUpdateDoctorData = DoctorService.attemptUpdateDoctorInformation(this.user.getId(), bio, spacialities, fees, designation, hospital, hospitalAddress, experience, education, schedule);
+            updateDoctorInformation(attemptUpdateDoctorData);
             updateUserInformation(attemptUpdateUserData);
-
-            HashMap<String, String> newData = new HashMap<>();
-            newData.put("name", name);
-            newData.put("email", email);
-            setData(newData);
+            updateModelSate(name, email);
         }
     }
 
@@ -528,14 +653,34 @@ public class UpdateProfileController implements Initializable {
                         String userPicture = resultSet.getString("picture");
                         String userBloodGroup = resultSet.getString("blood_group");
                         String userAddressJson = resultSet.getString("address");
+                        String bio = resultSet.getString("bio");
+                        String spacialities = resultSet.getString("spacialities");
+                        String fees = resultSet.getString("fees");
+                        String designation = resultSet.getString("designation");
+                        String hospital = resultSet.getString("hospital");
+                        String hospitalAddress = resultSet.getString("hospital_address");
+                        String experience = resultSet.getString("experience");
+                        String education = resultSet.getString("education");
+                        String schedule = resultSet.getString("schedule");
 
-                        name.setText((userName != null) ? userName : "");
-                        email.setText((userEmail != null) ? userEmail : "");
-                        phone.setText((userPhone != null) ? Helpers.getRawPhoneNumber(userPhone) : "");
-                        gender.setValue(userGender);
-                        bloodGroup.setValue(userBloodGroup);
-                        dob.setValue(dobDate);
-                        profilePicture.setText((userPicture != null) ? userPicture : "");
+
+                        this.name.setText((userName != null) ? userName : "");
+                        this.email.setText((userEmail != null) ? userEmail : "");
+                        this.phone.setText((userPhone != null) ? Helpers.getRawPhoneNumber(userPhone) : "");
+                        this.gender.setValue(userGender);
+                        this.bloodGroup.setValue(userBloodGroup);
+                        this.dob.setValue(dobDate);
+                        this.profilePicture.setText((userPicture != null) ? userPicture : "");
+                        this.bio.setText((bio != null) ? bio : "");
+                        this.spacialities.setText((spacialities != null) ? spacialities : "");
+                        this.fees.setText((fees != null) ? fees : "");
+                        this.designation.setText((designation != null) ? designation : "");
+                        this.hospital.setText((hospital != null) ? hospital : "");
+                        this.hospital_address.setText((hospitalAddress != null) ? hospitalAddress : "");
+                        this.experience.setText((experience != null) ? experience : "");
+                        this.education.setText((education != null) ? education : "");
+                        this.schedule.setText((schedule != null) ? schedule : "");
+
                         if (userPicture != null) {
                             File file = new File(userPicture);
                             Image image = new Image(file.toURI().toString());
@@ -557,7 +702,18 @@ public class UpdateProfileController implements Initializable {
                 }
             }
         });
+    }
 
+    /**
+     * update doctor information in database
+     *
+     * @param attemptUpdateDoctorData DatabaseWriteCall
+     */
+    private void updateDoctorInformation(DatabaseWriteCall attemptUpdateDoctorData) {
+        attemptUpdateDoctorData.setOnFailed(event -> {
+            Notification.error("Error", "Something went wrong. Please try again.");
+        });
+        new Thread(attemptUpdateDoctorData).start();
     }
 
     /**
@@ -570,28 +726,24 @@ public class UpdateProfileController implements Initializable {
             Integer rowsAffected = attemptUpdateUserData.getValue();
             if (rowsAffected != null && rowsAffected > 0) {
                 Notification.success("User data updated successfully.");
-                FXMLScene.switchScene("/com/easymed/views/patient/profile.fxml", rootPane);
+                FXMLScene.switchScene("/com/easymed/views/doctor/profile.fxml", rootPane);
             } else
                 Notification.error("User data update failed.");
         });
         attemptUpdateUserData.setOnFailed(event -> {
-            Throwable exception = attemptUpdateUserData.getException();
-            if (exception != null) {
-                exception.printStackTrace();
-            }
             Notification.error("Error", "Something went wrong. Please try again.");
         });
-
         new Thread(attemptUpdateUserData).start();
     }
 
     /**
-     * update user data in singleton use class
+     * set data to user model
      *
-     * @param data updated use data
+     * @param name  Name
+     * @param email Email
      */
-    public void setData(HashMap<String, String> data) {
-        this.user.setName(data.get("name"));
-        this.user.setEmail(data.get("email"));
+    public void updateModelSate(String name, String email) {
+        this.user.setName(name);
+        this.user.setEmail(email);
     }
 }

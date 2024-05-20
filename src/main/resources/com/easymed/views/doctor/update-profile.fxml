@@ -8,22 +8,22 @@
 <?import javafx.scene.text.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="730.0" prefWidth="1280.0"
-            style="-fx-background-color: #eff7f8;" stylesheets="@../../css/style.css"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.easymed.controllers.patient.UpdateProfileController">
+            style="-fx-background-color: #eff7f8;" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21"
+            fx:controller="com.easymed.controllers.doctor.UpdateProfileController">
     <left>
         <fx:include source="sidebar.fxml"/>
     </left>
     <center>
         <AnchorPane prefHeight="588.0" prefWidth="1083.0">
-            <Label layoutX="27.0" layoutY="19.0" prefHeight="29.0" prefWidth="269.0" text="Update Profile"
+            <Label layoutX="27.0" layoutY="19.0" prefHeight="29.0" prefWidth="251.0" text="Update Profile"
                    wrapText="true" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="19.0">
                 <font>
                     <Font name="System Bold" size="23.0"/>
                 </font>
             </Label>
-            <ScrollPane layoutY="66.0" prefHeight="664.0" prefWidth="1047.0" AnchorPane.bottomAnchor="0.0"
+            <ScrollPane layoutY="66.0" prefHeight="666.0" prefWidth="1280.0" AnchorPane.bottomAnchor="-2.0"
                         AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
-                <AnchorPane prefHeight="662.0" prefWidth="1043.0">
+                <AnchorPane prefHeight="961.0" prefWidth="1025.0">
                     <Pane layoutX="21.0" layoutY="16.0">
                         <TextField fx:id="name" layoutY="28.0" onKeyTyped="#nameType" prefHeight="41.0"
                                    prefWidth="280.0" promptText="Jhon Deo" styleClass="email"/>
@@ -258,51 +258,134 @@
                             </font>
                         </Label>
                     </Pane>
-                    <Pane layoutX="363.0" layoutY="322.0">
-                        <TextField fx:id="profilePicture" layoutY="28.0" prefHeight="41.0" prefWidth="346.0"
-                                   promptText="c//:" styleClass="email"/>
-                        <Label text="Profile Picture">
+
+
+                    <Pane layoutX="19.0" layoutY="419.0">
+                        <TextField fx:id="bio" layoutY="28.0" prefHeight="41.0" prefWidth="280.0"
+                                   promptText="Modern Eye Doctor" styleClass="email"/>
+                        <Label text="Bio">
                             <font>
                                 <Font size="18.0"/>
                             </font>
                         </Label>
-                        <Label fx:id="profilePictureValidationFeedback" layoutX="1.0" layoutY="74.0"
-                               text="Profile Picture is required" textFill="#ff0404">
+                    </Pane>
+                    <Pane layoutX="363.0" layoutY="419.0">
+                        <TextField fx:id="spacialities" layoutY="28.0" prefHeight="41.0" prefWidth="280.0"
+                                   promptText="Neuro Surgery" styleClass="email"/>
+                        <Label text="Spacialities">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="spacialitiesValidationFeedback" layoutX="1.0" layoutY="74.0"
+                               text="Invalid spacialities" textFill="#ff0404">
                             <font>
                                 <Font size="13.0"/>
                             </font>
                         </Label>
-                        <ImageView fx:id="profilePictureSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="314.0"
+                        <ImageView fx:id="spacialitiesSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="248.0"
                                    layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@../../images/okIcon.png"/>
                         </ImageView>
-                        <ImageView fx:id="profilePictureWrong" fitHeight="32.0" fitWidth="29.0" layoutX="314.0"
+                        <ImageView fx:id="spacialitiesWrong" fitHeight="32.0" fitWidth="29.0" layoutX="248.0"
                                    layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@../../images/cancelIcon.png"/>
                         </ImageView>
                     </Pane>
-
-                    <Button fx:id="uploadImageButton" layoutX="705.0" layoutY="350.0" mnemonicParsing="false"
-                            onAction="#uploadImage" prefHeight="40.0" prefWidth="66.0"
-                            style="-fx-background-color: #48bc9f;" text="Picture" textFill="WHITE">
-                        <effect>
-                            <Lighting diffuseConstant="1.45">
-                                <bumpInput>
-                                    <Shadow/>
-                                </bumpInput>
-                                <light>
-                                    <Light.Distant/>
-                                </light>
-                            </Lighting>
-                        </effect>
-                    </Button>
-                    <Pane layoutX="791.0" layoutY="350.0" prefHeight="200.0" prefWidth="200.0">
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="200.0" stroke="BLACK"
-                                   strokeType="INSIDE" width="200.0"/>
-                        <ImageView fx:id="imgProfile" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true"
-                                   preserveRatio="true"/>
+                    <Pane layoutX="711.0" layoutY="421.0">
+                        <TextField fx:id="fees" layoutY="26.0" onKeyTyped="#feesType" prefHeight="42.0"
+                                   prefWidth="280.0" promptText="Your Fees" styleClass="email"/>
+                        <Label text="Fees">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="feesValidationFeedback" layoutX="3.0" layoutY="71.0" text="Invalid Fees"
+                               textFill="#ff0404">
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </Label>
+                        <ImageView fx:id="feesSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="248.0" layoutY="32.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/okIcon.png"/>
+                        </ImageView>
+                        <ImageView fx:id="feesWrong" fitHeight="32.0" fitWidth="29.0" layoutX="248.0" layoutY="32.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/cancelIcon.png"/>
+                        </ImageView>
                     </Pane>
-                    <Button fx:id="updateProfileButton" layoutX="393.0" layoutY="447.0" mnemonicParsing="false"
+
+                    <Pane layoutX="14.0" layoutY="513.0">
+                        <TextField fx:id="designation" layoutY="28.0" prefHeight="41.0" prefWidth="280.0"
+                                   promptText="Neuro Scientist" styleClass="email"/>
+                        <Label text="Designation">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <ImageView fx:id="designationSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="248.0"
+                                   layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/okIcon.png"/>
+                        </ImageView>
+                        <ImageView fx:id="designationWrong" fitHeight="32.0" fitWidth="29.0" layoutX="248.0"
+                                   layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/cancelIcon.png"/>
+                        </ImageView>
+                        <Label fx:id="designationValidationFeedback" layoutX="3.0" layoutY="72.0"
+                               text="Invalid Designation" textFill="#ff0404">
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </Label>
+                    </Pane>
+                    <Pane layoutX="363.0" layoutY="322.0">
+                        <TextField fx:id="hospital" layoutY="28.0" prefHeight="41.0" prefWidth="280.0"
+                                   promptText="Dhaka Medical College Hospital" styleClass="email"/>
+                        <Label text="Hospital Name">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="hospitalValidationFeedback" layoutX="1.0" layoutY="74.0"
+                               text="Invalid Hospital name" textFill="#ff0404">
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </Label>
+                        <ImageView fx:id="hospitalSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="248.0"
+                                   layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/okIcon.png"/>
+                        </ImageView>
+                        <ImageView fx:id="hospitalWrong" fitHeight="32.0" fitWidth="29.0" layoutX="248.0" layoutY="35.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/cancelIcon.png"/>
+                        </ImageView>
+                    </Pane>
+                    <Pane layoutX="711.0" layoutY="323.0">
+                        <TextField fx:id="hospital_address" layoutY="26.0" prefHeight="42.0" prefWidth="280.0"
+                                   promptText="Gulistan, Dhaka." styleClass="email"/>
+                        <Label text="Hospital Address">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="hospitalAddressValidationFeedback" layoutX="3.0" layoutY="71.0"
+                               text="Invalid Hospital Address" textFill="#ff0404">
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </Label>
+                        <ImageView fx:id="hospitalAddressSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="248.0"
+                                   layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/okIcon.png"/>
+                        </ImageView>
+                        <ImageView fx:id="hospitalAddressWrong" fitHeight="32.0" fitWidth="29.0" layoutX="248.0"
+                                   layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/cancelIcon.png"/>
+                        </ImageView>
+                    </Pane>
+                    <Button fx:id="updateProfileButton" layoutX="365.0" layoutY="764.0" mnemonicParsing="false"
                             onAction="#updateProfile" prefHeight="41.0" prefWidth="199.0"
                             style="-fx-background-color: #48bc9f;" styleClass="btn1" text="Update">
                         <effect>
@@ -317,6 +400,77 @@
                         </effect>
                     </Button>
                     <Pane layoutX="613.0" layoutY="536.0"/>
+                    <Pane layoutX="360.0" layoutY="615.0" prefHeight="90.0" prefWidth="291.0">
+                        <TextField fx:id="profilePicture" layoutY="28.0" prefHeight="41.0" prefWidth="282.0"
+                                   promptText="c//:" styleClass="email"/>
+                        <Label text="Profile Picture">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="profilePictureValidationFeedback" layoutX="1.0" layoutY="74.0"
+                               text="Profile Picture is required" textFill="#ff0404">
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </Label>
+                        <ImageView fx:id="profilePictureSuccess" fitHeight="32.0" fitWidth="29.0" layoutX="251.0"
+                                   layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/okIcon.png"/>
+                        </ImageView>
+                        <ImageView fx:id="profilePictureWrong" fitHeight="32.0" fitWidth="29.0" layoutX="251.0"
+                                   layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../images/cancelIcon.png"/>
+                        </ImageView>
+                    </Pane>
+                    <Pane layoutX="791.0" layoutY="605.0" prefHeight="200.0" prefWidth="200.0">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="200.0" stroke="BLACK"
+                                   strokeType="INSIDE" width="200.0"/>
+                        <ImageView fx:id="imgProfile" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true"
+                                   preserveRatio="true"/>
+                    </Pane>
+                    <Pane layoutX="363.0" layoutY="512.0">
+                        <TextField fx:id="schedule" layoutY="28.0" prefHeight="41.0" prefWidth="280.0"
+                                   promptText="Neuro Surgery" styleClass="email"/>
+                        <Label text="Schedule">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </Pane>
+                    <Button fx:id="uploadImageButton" layoutX="651.0" layoutY="646.0" mnemonicParsing="false"
+                            onAction="#uploadImage" prefHeight="40.0" prefWidth="125.0"
+                            style="-fx-background-color: #48bc9f;" text="Picture" textFill="WHITE">
+                        <effect>
+                            <Lighting diffuseConstant="1.45">
+                                <bumpInput>
+                                    <Shadow/>
+                                </bumpInput>
+                                <light>
+                                    <Light.Distant/>
+                                </light>
+                            </Lighting>
+                        </effect>
+                    </Button>
+                    <Pane layoutX="713.0" layoutY="513.0">
+                        <TextField fx:id="experience" layoutY="26.0" prefHeight="42.0" prefWidth="280.0"
+                                   promptText="10 years" styleClass="email"/>
+                        <Label text="Experience">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </Pane>
+
+                    <Pane layoutX="15.0" layoutY="612.0">
+                        <TextField fx:id="education" layoutY="28.0" prefHeight="41.0" prefWidth="280.0"
+                                   promptText="MBBS" styleClass="email"/>
+                        <Label text="Education">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </Pane>
                 </AnchorPane>
             </ScrollPane>
         </AnchorPane>
