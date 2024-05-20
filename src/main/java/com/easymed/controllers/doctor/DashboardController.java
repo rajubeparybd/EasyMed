@@ -2,6 +2,7 @@ package com.easymed.controllers.doctor;
 
 import com.easymed.database.models.User;
 import com.easymed.database.services.AppointmentService;
+import com.easymed.database.services.UserService;
 import com.easymed.utils.DatabaseReadCall;
 import com.easymed.utils.GreetingMaker;
 import com.easymed.utils.Helpers;
@@ -13,6 +14,8 @@ import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -30,6 +34,8 @@ import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
     private final User user = User.getInstance();
+    @FXML
+    private ImageView userImage;
 
     @FXML
     private TextField searchBox;
@@ -86,7 +92,10 @@ public class DashboardController implements Initializable {
             String dateString = Helpers.getDate();
             String timeString = Helpers.getTime();
             date.setText(dateString + " | " + timeString);
-            
+
+            DatabaseReadCall getUserInfo = UserService.getUserInfo(this.user.getId(), this.user.getEmail());
+            setUiInformation(getUserInfo);
+
             DatabaseReadCall countToDaysAppointment = AppointmentService.countAppointments(this.user.getId());
             countAppointments(countToDaysAppointment);
 
@@ -96,6 +105,33 @@ public class DashboardController implements Initializable {
             loadPatientChart();
 
         });
+    }
+
+    /**
+     * set user info in UI
+     *
+     * @param getUserInfo DatabaseReadCall
+     */
+    private void setUiInformation(DatabaseReadCall getUserInfo) {
+        getUserInfo.setOnSucceeded(event -> {
+            ResultSet resultSet = getUserInfo.getValue();
+            try {
+                if (resultSet.next()) {
+                    String profilePicture = resultSet.getString("picture");
+                    if (profilePicture != null) {
+                        File file = new File(profilePicture);
+                        if (file.exists()) {
+                            Image image = new Image(file.toURI().toString());
+                            userImage.setImage(image);
+                        } else
+                            userImage.setImage(null);
+                    }
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        new Thread(getUserInfo).start();
     }
 
     /**

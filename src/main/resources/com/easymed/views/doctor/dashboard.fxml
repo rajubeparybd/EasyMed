@@ -4,17 +4,18 @@
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="730.0" prefWidth="1280.0"
             style="-fx-background-color: #eff7f8;" stylesheets="@../../css/style.css"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.easymed.controllers.doctor.DashboardController">
+            xmlns="http://javafx.com/javafx/17.0.2-ea"
+            fx:controller="com.easymed.controllers.doctor.DashboardController">
     <left>
         <fx:include source="sidebar.fxml"/>
     </left>
@@ -46,9 +47,9 @@
                         <Font name="Eras Demi ITC" size="28.0"/>
                     </font>
                 </Label>
-                <ImageView fitHeight="215" fitWidth="195" layoutX="485.0" layoutY="1.0" pickOnBounds="true"
+                <ImageView fx:id="userImage" fitHeight="215" fitWidth="195" layoutX="485.0" layoutY="1.0"
+                           pickOnBounds="true"
                            preserveRatio="true">
-                    <Image url="@../../images/patient.png"/>
                 </ImageView>
                 <Rectangle fx:id="img" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="199.0" layoutX="451.0"
                            stroke="#089bab" strokeType="INSIDE" strokeWidth="2.1" width="190.0"
@@ -82,7 +83,7 @@
                     <Insets bottom="15.0" left="30.0" right="15.0" top="15.0"/>
                 </VBox.margin>
                 <AreaChart fx:id="appointmentChart" layoutX="-4.0" layoutY="9.0" prefHeight="237.0" prefWidth="384.0"
-                           style="-fx-background-color: #4dd1ce;-fx-background-radius: 10px;" title="Doctors"
+                           style="-fx-background-color: #4dd1ce;-fx-background-radius: 10px;" title="Appointments"
                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM"/>
@@ -98,7 +99,7 @@
                     <Insets bottom="15.0" left="30.0" right="15.0" top="15.0"/>
                 </VBox.margin>
                 <AreaChart fx:id="patientChart" layoutX="-4.0" layoutY="9.0" prefHeight="237.0" prefWidth="384.0"
-                           style="-fx-background-color: #4dd1ce;-fx-background-radius: 10px;" title="Doctors"
+                           style="-fx-background-color: #4dd1ce;-fx-background-radius: 10px;" title="Patients"
                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM"/>

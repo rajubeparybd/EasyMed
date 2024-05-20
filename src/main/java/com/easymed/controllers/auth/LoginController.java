@@ -116,8 +116,6 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
             Transitions.changeSVG(rootPane, svg, doctorImg);
-            email.setText("asif@gmail.com");
-            password.setText("password");
         });
 
         emailIValidationFeedback.setVisible(false);
