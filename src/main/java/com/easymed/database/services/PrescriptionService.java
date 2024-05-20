@@ -52,4 +52,34 @@ public class PrescriptionService {
         placeholders.put(1, id);
         return new DatabaseReadCall(query, placeholders);
     }
+
+    /**
+     * getPrescriptionByAppointmentId
+     *
+     * @param id Integer
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getPatientPrescription(Integer id) {
+        String query = "SELECT * FROM appointments a " +
+                "INNER JOIN prescriptions p ON a.id = p.appointment_id " +
+                "WHERE a.patient_id = ? ORDER BY p.created_at DESC ";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, id);
+        return new DatabaseReadCall(query, placeholders);
+    }
+
+    /**
+     * getPrescriptionByAppointmentId
+     *
+     * @param id Integer
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getRecentPrescription(Integer id) {
+        String query = "SELECT * FROM prescriptions WHERE patient_id = ? ORDER BY created_at DESC LIMIT 1;";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, id);
+        return new DatabaseReadCall(query, placeholders);
+    }
 }

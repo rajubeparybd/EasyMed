@@ -34,11 +34,10 @@
 }
 
 .btn3 {
-    -fx-padding: 4px 8px;
+    -fx-padding: 5px 10px;
     -fx-text-fill: white;
     -fx-background-color: #4dd1ce;
     -fx-font-size: 12px;
-    -fx-font-weight: bolder;
 }
 
 .sidebarBtn-active {

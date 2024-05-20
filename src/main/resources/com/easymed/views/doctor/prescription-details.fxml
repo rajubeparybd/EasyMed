@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="609.0" prefWidth="690.0"
+            xmlns="http://javafx.com/javafx/17.0.2-ea"
+            fx:controller="com.easymed.controllers.doctor.PrescriptionDetailsController">
+    <VBox layoutX="21.0" layoutY="14.0" prefHeight="53.0" prefWidth="334.0" spacing="10.0">
+        <HBox>
+            <Label text="Prescription Id :">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <Label fx:id="PID" layoutX="10.0" layoutY="10.0" text="N/A">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+            </Label>
+        </HBox>
+        <HBox layoutX="10.0" layoutY="10.0">
+            <Label text="Appointment Date :">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <Label fx:id="ApDate" layoutX="10.0" layoutY="10.0" text="N/A">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+            </Label>
+        </HBox>
+        <HBox layoutX="10.0" layoutY="28.0">
+            <Label text="Next Checkup Date:">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <Label fx:id="NeDate" layoutX="10.0" layoutY="10.0" text="N/A">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+            </Label>
+        </HBox>
+    </VBox>
+    <VBox layoutX="21.0" layoutY="122.0">
+        <HBox prefHeight="40.0">
+            <Label text="Illness List">
+                <font>
+                    <Font name="System Bold" size="18.0"/>
+                </font>
+            </Label>
+        </HBox>
+        <HBox layoutX="10.0" layoutY="10.0">
+            <Label prefWidth="50.0" text="No.">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="10.0" prefWidth="300.0" text="Name">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="10.0" prefWidth="200.0" text="Symptom Date">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+        </HBox>
+        <ScrollPane hbarPolicy="NEVER" prefHeight="150.0" vbarPolicy="ALWAYS">
+            <VBox fx:id="illnessContainer"/>
+        </ScrollPane>
+    </VBox>
+    <VBox layoutX="21.0" layoutY="371.0">
+        <HBox prefHeight="40.0">
+            <Label text="Medicine List">
+                <font>
+                    <Font name="System Bold" size="18.0"/>
+                </font>
+            </Label>
+        </HBox>
+        <HBox>
+            <Label prefWidth="50.0" text="No.">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="10.0" prefWidth="200.0" text="Name">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <Label layoutX="37.0" layoutY="10.0" prefWidth="100.0" text="Morning">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <Label layoutX="64.0" layoutY="10.0" prefWidth="100.0" text="Afternoon">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <Label layoutX="92.0" layoutY="10.0" prefWidth="100.0" text="Night">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+        </HBox>
+        <ScrollPane hbarPolicy="NEVER" prefHeight="150.0" vbarPolicy="ALWAYS">
+            <VBox fx:id="medicineContainer">
+            </VBox>
+        </ScrollPane>
+    </VBox>
+    <Separator layoutX="21.0" layoutY="356.0" prefHeight="6.0" prefWidth="550.0"/>
+</AnchorPane>

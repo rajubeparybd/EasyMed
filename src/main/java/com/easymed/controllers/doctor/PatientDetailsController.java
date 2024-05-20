@@ -1,13 +1,10 @@
-package com.easymed.controllers.patient;
+package com.easymed.controllers.doctor;
 
-import com.easymed.controllers.doctor.PrescriptionDetailsController;
-import com.easymed.database.models.User;
 import com.easymed.database.services.PrescriptionService;
 import com.easymed.database.services.UserService;
 import com.easymed.utils.DatabaseReadCall;
 import com.easymed.utils.Helpers;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,10 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -36,18 +31,17 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class RecordController implements Initializable {
-    private final User user = User.getInstance();
+public class PatientDetailsController implements Initializable {
+    public Label zipLabel;
+    public Label cityLabel;
+    public Label addressLabel;
     public Label bloodGroupLabel;
     public Label genderLabel;
+    public Label userIdLabel;
     public Label phoneLabel;
     public GridPane prescriptionContainer;
     @FXML
     private BorderPane rootPane;
-    @FXML
-    private TextField searchBox;
-    @FXML
-    private GridPane patientContainer;
     @FXML
     private ImageView imageLabel;
     @FXML
@@ -57,20 +51,44 @@ public class RecordController implements Initializable {
     @FXML
     private Label nameLabel;
 
+    private Integer appointmentId;
+    private Integer patientId;
+
+//    private Integer prescriptionId;
+//    private String appointmentDate;
+//    private String nextCheckUpDate;
+
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             VBox sidebar = (VBox) rootPane.getLeft();
-            Helpers.toggleMenuClass(sidebar, "records");
+            Helpers.toggleMenuClass(sidebar, "patients");
             Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setTitle(Helpers.getTitle("Patient Records"));
+            stage.setTitle(Helpers.getTitle("Patient Details"));
         });
-        DatabaseReadCall getPatientInfo = UserService.getUserInfo(this.user.getId(), this.user.getEmail());
+    }
+
+    public void setPatientInfo(String name, Integer appointmentId, String email, Integer patientId, String dob, String patientProfile) {
+        this.appointmentId = appointmentId;
+        this.patientId = patientId;
+        this.nameLabel.setText(name);
+        this.emailLabel.setText(email);
+        this.dobLabel.setText(dob);
+        if (patientProfile != null) {
+            File file = new File(patientProfile);
+            if (file.exists()) {
+                Image image = new Image(file.toURI().toString());
+                imageLabel.setImage(image);
+            } else imageLabel.setImage(null);
+        }
+        DatabaseReadCall getPatientInfo = UserService.getUserInfo(patientId, email);
         loadPatientInfo(getPatientInfo);
 
-        DatabaseReadCall getPatientPrescription = PrescriptionService.getPatientPrescription(this.user.getId());
+        DatabaseReadCall getPatientPrescription = PrescriptionService.getPatientPrescription(patientId);
         loadPatientPrescription(getPatientPrescription);
+
+
     }
 
     public void loadPatientInfo(DatabaseReadCall getPatientInfo) {
@@ -78,20 +96,9 @@ public class RecordController implements Initializable {
             ResultSet resultSet = getPatientInfo.getValue();
             try {
                 if (resultSet.next()) {
-                    nameLabel.setText(resultSet.getString("name"));
-                    emailLabel.setText(resultSet.getString("email"));
-                    dobLabel.setText(resultSet.getString("dob"));
                     phoneLabel.setText(resultSet.getString("phone"));
                     genderLabel.setText(resultSet.getString("gender"));
                     bloodGroupLabel.setText(resultSet.getString("blood_group"));
-                    String patientProfile = resultSet.getString("picture");
-                    if (patientProfile != null) {
-                        File file = new File(patientProfile);
-                        if (file.exists()) {
-                            Image image = new Image(file.toURI().toString());
-                            imageLabel.setImage(image);
-                        } else imageLabel.setImage(null);
-                    }
 
                 }
             } catch (SQLException e) {
@@ -174,30 +181,11 @@ public class RecordController implements Initializable {
             stage.getIcons().add(icon);
 
             PrescriptionDetailsController controller = fxmlLoader.getController();
-            controller.setPrescriptionInfo(this.user.getId(), prescriptionId, appointmentDate, nextCheckUpDate);
+            controller.setPrescriptionInfo(patientId, prescriptionId, appointmentDate, nextCheckUpDate);
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * Search for a patient
-     *
-     * @param keyEvent Search box key event
-     */
-    @FXML
-    public void search(KeyEvent keyEvent) {
-        //TODO: Search patient
-    }
-
-    /**
-     * Show the form to add a new patient
-     *
-     * @param actionEvent Add Patient key event
-     */
-    @FXML
-    public void addPatient(ActionEvent actionEvent) {
-        //TODO: Add patient form
-    }
 }

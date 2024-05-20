@@ -1,5 +1,6 @@
 package com.easymed.database.services;
 
+import com.easymed.utils.DatabaseReadCall;
 import com.easymed.utils.DatabaseWriteCall;
 
 import java.util.HashMap;
@@ -33,6 +34,16 @@ public class IllnessService {
         placeholders.put(index, symptoms_date);
 
         return new DatabaseWriteCall(query, placeholders);
+    }
+
+    public static DatabaseReadCall getIllness(Integer patientId, Integer prescriptionId) {
+        String query = "SELECT * FROM illness WHERE user_id=? AND prescriptions_id=?";
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        int index = 1;
+        placeholders.put(index++, patientId);
+        placeholders.put(index, prescriptionId);
+
+        return new DatabaseReadCall(query, placeholders);
     }
 }
 

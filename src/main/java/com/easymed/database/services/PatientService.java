@@ -74,4 +74,40 @@ public class PatientService {
 
         return new DatabaseReadCall(query, placeholders);
     }
+
+    /**
+     * get Appointments By Search query
+     *
+     * @param searchText String searchText
+     * @param doctor_id  String doctor_id
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getPatients(String searchText, Integer doctor_id) {
+        String query = "SELECT * FROM users as u JOIN appointments as ap ON u.id = ap.patient_id " + "WHERE " + "(name LIKE ? OR " + "email LIKE ? OR " + "reason LIKE ? OR" + " appointment_date LIKE ? OR " + "status LIKE ?) AND ap.doctor_id = ? AND status = 'Completed' GROUP BY u.id ";
+
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        int i;
+        for (i = 1; i <= 5; i++) {
+            placeholders.put(i, "%" + searchText + "%");
+        }
+        placeholders.put(i, doctor_id);
+        return new DatabaseReadCall(query, placeholders);
+    }
+
+    /**
+     * Get appointment by doctor id
+     *
+     * @param id doctor id
+     *
+     * @return DatabaseReadCall
+     */
+    public static DatabaseReadCall getPatients(Integer id) {
+        String query = "SELECT * FROM users as u JOIN appointments as ap ON u.id = ap.patient_id WHERE ap.doctor_id = ? AND status = 'Completed' GROUP BY u.id ORDER BY appointment_date";
+
+        HashMap<Integer, Object> placeholders = new HashMap<>();
+        placeholders.put(1, id);
+
+        return new DatabaseReadCall(query, placeholders);
+    }
 }
