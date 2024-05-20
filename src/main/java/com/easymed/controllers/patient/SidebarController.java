@@ -47,19 +47,6 @@ public class SidebarController implements Initializable {
     }
 
     /**
-     * Switches the scene to the chat box view when the chat box button is clicked
-     *
-     * @param actionEvent chat box button click event
-     */
-    @FXML
-    public void chatBox(ActionEvent actionEvent) {
-        Helpers.toggleMenuClass(actionEvent);
-        //TODO: Implement chat box view
-        System.out.println("Chat Box");
-    }
-
-
-    /**
      * Switches the scene to the doctors list view when the doctors button is clicked
      *
      * @param actionEvent doctors button click event
