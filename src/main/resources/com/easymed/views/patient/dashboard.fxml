@@ -10,9 +10,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="730.0" prefWidth="1280.0"
-            style="-fx-background-color: #eff7f8;" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21"
+            style="-fx-background-color: #eff7f8;" stylesheets="@../../css/style.css"
+            xmlns="http://javafx.com/javafx/17.0.2-ea"
             fx:controller="com.easymed.controllers.patient.DashboardController">
     <left>
         <fx:include source="sidebar.fxml"/>
@@ -94,7 +96,7 @@
                                         </font>
                                     </Label>
                                     <Label fx:id="ageLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT"
-                                           layoutX="10.0" layoutY="10.0" text="18" textFill="#089bab">
+                                           layoutX="10.0" layoutY="10.0" text="N/A" textFill="#089bab">
                                         <font>
                                             <Font name="System Bold" size="20.0"/>
                                         </font>
@@ -108,7 +110,7 @@
                                         </font>
                                     </Label>
                                     <Label fx:id="bloodGroupLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT"
-                                           layoutX="10.0" layoutY="10.0" text="AB+" textFill="#089bab">
+                                           layoutX="10.0" layoutY="10.0" text="N/A" textFill="#089bab">
                                         <font>
                                             <Font name="System Bold" size="20.0"/>
                                         </font>
@@ -145,7 +147,7 @@
                                         </font>
                                         <graphic>
                                             <Label fx:id="appointDoctor" alignment="CENTER_RIGHT" contentDisplay="RIGHT"
-                                                   text="18" textFill="#3e9491">
+                                                   text="N/A" textFill="#3e9491">
                                                 <font>
                                                     <Font size="20.0"/>
                                                 </font>
@@ -159,7 +161,7 @@
                                         </font>
                                         <graphic>
                                             <Label fx:id="appointHospital" alignment="CENTER_RIGHT"
-                                                   contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                                   contentDisplay="RIGHT" text="N/A" textFill="#3e9491">
                                                 <font>
                                                     <Font size="20.0"/>
                                                 </font>
@@ -173,7 +175,7 @@
                                         </font>
                                         <graphic>
                                             <Label fx:id="appointTime" alignment="CENTER_RIGHT" contentDisplay="RIGHT"
-                                                   text="18" textFill="#3e9491">
+                                                   text="N/A" textFill="#3e9491">
                                                 <font>
                                                     <Font size="20.0"/>
                                                 </font>

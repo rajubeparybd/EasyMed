@@ -5,13 +5,13 @@ import com.easymed.database.services.DoctorService;
 import com.easymed.utils.DatabaseReadCall;
 import com.easymed.utils.FXMLScene;
 import com.easymed.utils.Helpers;
+import com.easymed.utils.ImageHandler;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -19,7 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -164,14 +163,8 @@ public class ProfileController implements Initializable {
                     this.schedule.setText(schedule != null ? schedule : "N/A");
                     this.experience.setText(experience != null ? experience : "N/A");
                     this.fees.setText(fees != null ? fees + "৳" : "N/A");
-
-                    if (userPicture != null) {
-                        File file = new File(userPicture);
-                        if (file.exists()) {
-                            Image image = new Image(file.toURI().toString());
-                            profilePic.setImage(image);
-                        } else profilePic.setImage(null);
-                    }
+                    
+                    ImageHandler.setProfileImage(userPicture, profilePic);
 
                     if (userAddressJson != null && Helpers.isValidJson(userAddressJson)) {
                         JSONObject jsonObject = new JSONObject(userAddressJson);

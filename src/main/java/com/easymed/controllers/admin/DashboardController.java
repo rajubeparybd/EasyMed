@@ -6,6 +6,7 @@ import com.easymed.enums.Role;
 import com.easymed.utils.DatabaseReadCall;
 import com.easymed.utils.GreetingMaker;
 import com.easymed.utils.Helpers;
+import com.easymed.utils.ImageHandler;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,14 +14,12 @@ import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Date;
@@ -96,14 +95,9 @@ public class DashboardController implements Initializable {
             String dateString = Helpers.getDate();
             String timeString = Helpers.getTime();
             date.setText(dateString + " | " + timeString);
-            if (this.user.getProfilePic() != null) {
-                File file = new File(this.user.getProfilePic());
-                if (file.exists()) {
-                    Image image = new Image(file.toURI().toString());
-                    profilePic.setImage(image);
-                } else
-                    profilePic.setImage(null);
-            }
+
+            String userPicture = user.getProfilePic();
+            ImageHandler.setProfileImage(userPicture, profilePic);
 
             // Set the number of Doctors
             DatabaseReadCall getNumOfDoctors = UserService.getNumberOfUsers(Role.getText(Role.DOCTOR));

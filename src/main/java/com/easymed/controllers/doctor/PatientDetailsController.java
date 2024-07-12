@@ -182,6 +182,10 @@ public class PatientDetailsController implements Initializable {
 
             PrescriptionDetailsController controller = fxmlLoader.getController();
             controller.setPrescriptionInfo(patientId, prescriptionId, appointmentDate, nextCheckUpDate);
+
+            stage.setMinWidth(690);
+            stage.setMinHeight(620);
+
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();

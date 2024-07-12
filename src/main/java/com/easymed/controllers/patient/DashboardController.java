@@ -8,13 +8,12 @@ import com.easymed.database.services.UserService;
 import com.easymed.utils.DatabaseReadCall;
 import com.easymed.utils.GreetingMaker;
 import com.easymed.utils.Helpers;
+import com.easymed.utils.ImageHandler;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -22,7 +21,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -83,16 +81,6 @@ public class DashboardController implements Initializable {
         this.user.setRole(data.get("role"));
     }
 
-    /**
-     * Switches the scene to the blood banks view when the find blood button is clicked
-     *
-     * @param event find blood button click event
-     */
-    @FXML
-    void findBlood(ActionEvent event) {
-        //TODO: Implement the find blood functionality
-        System.out.println("Find Blood");
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -147,21 +135,20 @@ public class DashboardController implements Initializable {
             try {
                 if (resultSet.next()) {
                     String profilePicture = resultSet.getString("picture");
-                    if (profilePicture != null) {
-                        File file = new File(profilePicture);
-                        if (file.exists()) {
-                            Image image = new Image(file.toURI().toString());
-                            userImage.setImage(image);
-                        } else
-                            userImage.setImage(null);
-                    }
-                    //ageLabel.setText(resultSet.getString("dob"));
-                    Date dateOfBirth = resultSet.getDate("dob");
-                    LocalDate dob = dateOfBirth.toLocalDate();
-                    LocalDate currentDate = LocalDate.now();
-                    int age = Period.between(dob, currentDate).getYears();
-                    ageLabel.setText(String.valueOf(age));
 
+                    ImageHandler.setProfileImage(profilePicture, userImage);
+
+                    Date dateOfBirth = resultSet.getDate("dob");
+                    int age = 0;
+                    if (dateOfBirth != null) {
+                        LocalDate dob = dateOfBirth.toLocalDate();
+                        LocalDate currentDate = LocalDate.now();
+                        age = Period.between(dob, currentDate).getYears();
+                        ageLabel.setText(String.valueOf(age));
+                    } else {
+                        ageLabel.setText("N/A"); // Handle case where date of birth is not available
+                    }
+                    ageLabel.setText(String.valueOf(age));
                     bloodGroupLabel.setText(resultSet.getString("blood_group"));
                 }
             } catch (SQLException e) {

@@ -21,7 +21,9 @@ import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
@@ -276,8 +278,34 @@ public class RegistrationController implements Initializable {
             DatabaseWriteCall databaseWriteCall = AuthService.attemptRegistration(name, email, password, String.valueOf(Role.PATIENT));
             databaseWriteCall.setOnSucceeded(event -> {
                 if (databaseWriteCall.isDone()) {
-                    Notification.success("Success", "Account Registration successful");
-                    FXMLScene.switchScene("/com/easymed/views/patient/dashboard.fxml", (Node) actionEvent.getSource());
+                    Notification.success("Success", "Account Registration successful ");
+                    DatabaseReadCall databaseReadCall = AuthService.attemptLogin(email, password);
+                    databaseReadCall.setOnSucceeded(event1 -> {
+                        try {
+                            if (databaseReadCall.getValue().next()) {
+                                Notification.success("Success", "Login successful");
+
+                                // User data to be passed to the dashboard scene
+                                HashMap<String, String> userData = new HashMap<>();
+                                ResultSet user = databaseReadCall.getValue();
+                                userData.put("id", user.getString("id"));
+                                userData.put("name", user.getString("name"));
+                                userData.put("email", user.getString("email"));
+                                userData.put("role", user.getString("role"));
+                                userData.put("picture", user.getString("picture"));
+
+                                FXMLScene.switchScene("/com/easymed/views/patient/dashboard.fxml", (Node) actionEvent.getSource(), userData);
+                            }
+                        } catch (SQLException e) {
+                            System.out.println("RegistrationController.login: " + e.getMessage());
+                            Notification.error("Error", "Something went wrong. Please login again.");
+                            //FXMLScene.switchScene("/com/easymed/views/auth/login.fxml", (Node) actionEvent.getSource());
+                        }
+                    });
+                    databaseReadCall.setOnFailed(event1 -> {
+                        Notification.error("Error", "Something went wrong. Please try again.");
+                    });
+                    new Thread(databaseReadCall).start();
                 } else {
                     registrationFailedWarning.setVisible(true);
                     Notification.error("Registration Failed Please try again.");

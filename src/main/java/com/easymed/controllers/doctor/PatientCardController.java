@@ -1,16 +1,14 @@
 package com.easymed.controllers.doctor;
 
 import com.easymed.utils.FXMLScene;
+import com.easymed.utils.ImageHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.File;
 
 public class PatientCardController {
     @FXML
@@ -59,14 +57,16 @@ public class PatientCardController {
         emailLabel.setText(email);
         setReasonLabel.setText(reason);
 
-        if (patientProfile != null) {
-            File file = new File(patientProfile);
-            if (file.exists()) {
-                Image image = new Image(file.toURI().toString());
-                profilePicLabel.setImage(image);
-            } else
-                profilePicLabel.setImage(null);
-        }
+//        if (patientProfile != null) {
+//            File file = new File(patientProfile);
+//            if (file.exists()) {
+//                Image image = new Image(file.toURI().toString());
+//                profilePicLabel.setImage(image);
+//            } else
+//                profilePicLabel.setImage(null);
+//        }
+        ImageHandler.setProfileImage(patientProfile, profilePicLabel);
+        
         appointmentDateLabel.setText(appointmentDate);
     }
 

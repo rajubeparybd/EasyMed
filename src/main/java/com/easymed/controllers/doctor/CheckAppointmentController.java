@@ -12,14 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -97,14 +95,8 @@ public class CheckAppointmentController implements Initializable {
         nameLabel.setText(patientName);
         emailLabel.setText(patientEmail);
         dobLabel.setText(dob);
-
-        if (patientProfile != null) {
-            File file = new File(patientProfile);
-            if (file.exists()) {
-                Image image = new Image(file.toURI().toString());
-                profilePicLabel.setImage(image);
-            } else profilePicLabel.setImage(null);
-        }
+        
+        ImageHandler.setProfileImage(patientProfile, profilePicLabel);
     }
 
     @Override

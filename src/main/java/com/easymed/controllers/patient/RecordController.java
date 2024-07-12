@@ -6,6 +6,7 @@ import com.easymed.database.services.PrescriptionService;
 import com.easymed.database.services.UserService;
 import com.easymed.utils.DatabaseReadCall;
 import com.easymed.utils.Helpers;
+import com.easymed.utils.ImageHandler;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +29,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -85,13 +85,8 @@ public class RecordController implements Initializable {
                     genderLabel.setText(resultSet.getString("gender"));
                     bloodGroupLabel.setText(resultSet.getString("blood_group"));
                     String patientProfile = resultSet.getString("picture");
-                    if (patientProfile != null) {
-                        File file = new File(patientProfile);
-                        if (file.exists()) {
-                            Image image = new Image(file.toURI().toString());
-                            imageLabel.setImage(image);
-                        } else imageLabel.setImage(null);
-                    }
+
+                    ImageHandler.setProfileImage(patientProfile, imageLabel);
 
                 }
             } catch (SQLException e) {
@@ -175,6 +170,10 @@ public class RecordController implements Initializable {
 
             PrescriptionDetailsController controller = fxmlLoader.getController();
             controller.setPrescriptionInfo(this.user.getId(), prescriptionId, appointmentDate, nextCheckUpDate);
+
+            stage.setMinWidth(690);
+            stage.setMinHeight(620);
+
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();

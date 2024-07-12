@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,7 +26,6 @@ public class Helpers {
      * Returns the title with the application name appended to it
      *
      * @param title Title of the page
-     *
      * @return The title of the page
      */
     public static String getTitle(String title) {
@@ -46,7 +46,6 @@ public class Helpers {
      * Returns the current date in the specified pattern
      *
      * @param pattern Date pattern
-     *
      * @return The current date
      */
     public static String getDate(String pattern) {
@@ -60,7 +59,6 @@ public class Helpers {
      *
      * @param pattern Date pattern
      * @param date    Date
-     *
      * @return The date
      */
     public static String getDate(Date date, String pattern) {
@@ -82,7 +80,6 @@ public class Helpers {
      * Returns the current time in the specified pattern
      *
      * @param pattern Time pattern
-     *
      * @return The current time
      */
     public static String getTime(String pattern) {
@@ -129,7 +126,6 @@ public class Helpers {
      * Check the json is valid or not
      *
      * @param json JSON
-     *
      * @return boolean
      */
     public static boolean isValidJson(String json) {
@@ -145,7 +141,6 @@ public class Helpers {
      * Get the formatted phone number with country code
      *
      * @param phoneNumber Phone number
-     *
      * @return Formatted phone number
      */
     public static String getFormattedPhoneNumber(String phoneNumber) {
@@ -159,7 +154,6 @@ public class Helpers {
      * Get the raw phone number without country code
      *
      * @param phoneNumber Phone number
-     *
      * @return Raw phone number
      */
     public static String getRawPhoneNumber(String phoneNumber) {
@@ -190,8 +184,11 @@ public class Helpers {
      * @return string
      */
     public static String getImageFilePath() {
+//        String path = System.getProperty("user.dir");
+//        path += "\\EasyMed\\src\\main\\resources\\com\\easymed\\images\\users\\";
+//        return path;
+
         String path = System.getProperty("user.dir");
-        path += "\\src\\main\\resources\\com\\easymed\\images\\users\\";
-        return path;
+        return Paths.get(path, "src", "main", "resources", "com", "easymed", "images", "users").toString();
     }
 }
