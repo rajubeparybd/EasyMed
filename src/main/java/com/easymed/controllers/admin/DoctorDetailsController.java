@@ -3,15 +3,14 @@ package com.easymed.controllers.admin;
 import com.easymed.database.services.DoctorService;
 import com.easymed.utils.DatabaseReadCall;
 import com.easymed.utils.Helpers;
+import com.easymed.utils.ImageHandler;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -62,6 +61,7 @@ public class DoctorDetailsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         Platform.runLater(() -> {
             DatabaseReadCall getDoctorInfo = DoctorService.getDoctorInformation(doctorId);
             setDoctorInformation(getDoctorInfo);
@@ -133,14 +133,8 @@ public class DoctorDetailsController implements Initializable {
                         cityLabel.setText(city);
                         zipLabel.setText(String.valueOf(zip));
                     }
-                    if (doctorPicture != null) {
-                        File file = new File(doctorPicture);
-                        if (file.exists()) {
-                            Image image = new Image(file.toURI().toString());
-                            doctorPictureLabel.setImage(image);
-                        } else
-                            doctorPictureLabel.setImage(null);
-                    }
+
+                    ImageHandler.setProfileImage(doctorPicture, doctorPictureLabel);
 
                 }
             } catch (SQLException e) {

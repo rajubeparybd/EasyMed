@@ -123,12 +123,15 @@ public class DoctorController implements Initializable {
         stage.getIcons().add(icon);
         DoctorDetailsController controller = (DoctorDetailsController) fxmlLoader.getController();
         controller.setDoctorId(doctorId);
+
+        stage.setMinWidth(955);
+        stage.setMinHeight(635);
+
         stage.showAndWait();
     }
 
     /**
      * @param user UserInfo user information
-     *
      * @return String
      */
     private String formatDoctorData(UserInfo user) {

@@ -6,6 +6,7 @@ import com.easymed.database.services.UserService;
 import com.easymed.utils.DatabaseReadCall;
 import com.easymed.utils.GreetingMaker;
 import com.easymed.utils.Helpers;
+import com.easymed.utils.ImageHandler;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,6 @@ import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,7 +23,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -118,14 +117,8 @@ public class DashboardController implements Initializable {
             try {
                 if (resultSet.next()) {
                     String profilePicture = resultSet.getString("picture");
-                    if (profilePicture != null) {
-                        File file = new File(profilePicture);
-                        if (file.exists()) {
-                            Image image = new Image(file.toURI().toString());
-                            userImage.setImage(image);
-                        } else
-                            userImage.setImage(null);
-                    }
+
+                    ImageHandler.setProfileImage(profilePicture, userImage);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);

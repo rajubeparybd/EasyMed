@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -18,7 +17,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -504,7 +502,6 @@ public class UpdateProfileController implements Initializable {
      * UpdateButton for update user information in database
      *
      * @param actionEvent ActionEvent button
-     *
      * @throws SQLException SQLException for any error in database
      */
     public void updateProfile(ActionEvent actionEvent) throws SQLException {
@@ -681,11 +678,12 @@ public class UpdateProfileController implements Initializable {
                         this.education.setText((education != null) ? education : "");
                         this.schedule.setText((schedule != null) ? schedule : "");
 
-                        if (userPicture != null) {
-                            File file = new File(userPicture);
-                            Image image = new Image(file.toURI().toString());
-                            imgProfile.setImage(image);
-                        }
+//                        if (userPicture != null) {
+//                            File file = new File(userPicture);
+//                            Image image = new Image(file.toURI().toString());
+//                            imgProfile.setImage(image);
+//                        }
+                        ImageHandler.setProfileImage(userPicture, imgProfile, 200, 200);
 
                         if (userAddressJson != null && Helpers.isValidJson(userAddressJson)) {
                             JSONObject jsonObject = new JSONObject(userAddressJson);

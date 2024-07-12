@@ -172,3 +172,8 @@
     -fx-border-color: derive(-fx-pie-color, 1%);
     -fx-border-width: 0px;
 }
+
+.root {
+    -fx-min-width: 950px;
+    -fx-min-height: 650px;
+}

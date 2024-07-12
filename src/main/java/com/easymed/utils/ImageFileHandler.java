@@ -10,6 +10,8 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
@@ -35,11 +37,12 @@ public class ImageFileHandler {
             List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png");
             if (allowedExtensions.contains(extension.toLowerCase())) {
                 String destFileName = user_id + "." + extension;
-                File destFile = new File(Helpers.getImageFilePath() + destFileName);
+                Path destFilePath = Paths.get(Helpers.getImageFilePath(), destFileName);
                 try {
-                    Files.copy(file.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    profilePicture.setText(destFile.getAbsolutePath());
-                    Image image = new Image(destFile.toURI().toString());
+                    Files.copy(file.toPath(), destFilePath, StandardCopyOption.REPLACE_EXISTING);
+                    profilePicture.setText(destFilePath.toAbsolutePath().toString());
+
+                    Image image = new Image(destFilePath.toUri().toString(), 400, 400, false, false);
                     imgProfile.setImage(image);
                 } catch (IOException e) {
                     showAlert("Failed to upload file: " + e.getMessage());
@@ -67,7 +70,6 @@ public class ImageFileHandler {
      * get file Extension
      *
      * @param fileName file path in string
-     *
      * @return extension jpg png jpeg
      */
     private static String getFileExtension(String fileName) {
